@@ -7,37 +7,47 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/admin"
+        android:id="@+id/menu_management"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/admin_text"
+        android:text="@string/menu_management_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="25sp"/>
 
     <Button
-        android:id="@+id/admin_button1"
+        android:id="@+id/patty_button"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="@string/admin_button1_text"
+        android:text="@string/patty_text"
         android:textSize="50sp"
-        app:layout_constraintTop_toBottomOf="@+id/admin" />
+        app:layout_constraintTop_toBottomOf="@+id/menu_management" />
 
     <Button
-        android:id="@+id/admin_button2"
+        android:id="@+id/vegetable_button"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="@string/admin_button2_text"
+        android:text="@string/vegetable_text"
         android:textSize="50sp"
-        app:layout_constraintTop_toBottomOf="@+id/admin_button1" />
+        app:layout_constraintTop_toBottomOf="@+id/patty_button" />
 
     <Button
-        android:id="@+id/admin_back_button"
+        android:id="@+id/source_button"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/source_text"
+        android:textSize="50sp"
+        app:layout_constraintTop_toBottomOf="@+id/vegetable_button" />
+
+    <Button
+        android:id="@+id/menu_management_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
