@@ -142,5 +142,8 @@ class AdminPassword : AppCompatActivity() {
                 show()
             }.setCanceledOnTouchOutside(true)
         }
+        APbinding.backPass.setOnClickListener {
+            finish()
+        }
     }
 }
