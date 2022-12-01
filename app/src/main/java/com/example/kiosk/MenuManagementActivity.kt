@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kiosk.databinding.MenuManagementBinding
 import com.example.kiosk.databinding.PattyBinding
+import com.example.kiosk.databinding.SourceBinding
 import com.example.kiosk.databinding.VegetableBinding
 
 class MenuManagementActivity: AppCompatActivity() {
@@ -29,6 +30,16 @@ class MenuManagementActivity: AppCompatActivity() {
             val dialogBinding = VegetableBinding.inflate(layoutInflater)
             AlertDialog.Builder(this).run {
                 setTitle("채소")
+                setView(dialogBinding.root)
+                setPositiveButton("닫기", null)
+                show()
+            }
+        }
+
+        binding.sourceButton.setOnClickListener {
+            val dialogBinding = SourceBinding.inflate(layoutInflater)
+            AlertDialog.Builder(this).run {
+                setTitle("소스")
                 setView(dialogBinding.root)
                 setPositiveButton("닫기", null)
                 show()
