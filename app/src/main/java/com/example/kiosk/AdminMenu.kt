@@ -26,5 +26,10 @@ class AdminMenu : AppCompatActivity() {
         adminBinding.adminBackButton.setOnClickListener {
             finish()
         }
+
+        adminBinding.paymentButton.setOnClickListener {
+            val pay = Intent(this, PaymentActivity::class.java)
+            startActivity(pay)
+        }
     }
 }
