@@ -31,6 +31,8 @@
         <activity
             android:name=".InventoryTable"
             android:label="InventoryMenu"/>
+        <activity
+            android:name=".MenuManagementActivity" />
     </application>
 
 </manifest>
