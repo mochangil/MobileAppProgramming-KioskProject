@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,15 +17,47 @@
             android:id="@+id/inventory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:backgroundTint="#D7D7D7"
             android:text="재고 관리"
+            android:height="60dp"/>
+
+        <Button
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:backgroundTint="#D7D7D7"
+            android:visibility="gone"
+            android:text="메뉴 관리"
             android:height="60dp"/>
 
         <Button
             android:id="@+id/sold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="매출 관리"
+            android:textColor="#000000"
+            android:backgroundTint="#D7D7D7"
+            android:text="메출 관리"
             android:height="60dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="invisible"
+            android:height="60dp"/>
+
+        <Button
+            android:id="@+id/admin_back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:backgroundTint="#D7D7D7"
+            android:gravity="center"
+            android:text="@string/back_button_text"
+            android:height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </LinearLayout>
 </LinearLayout>
