@@ -17,8 +17,6 @@
             android:id="@+id/inventory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:backgroundTint="#D7D7D7"
             android:text="재고 관리"
             android:height="60dp"/>
 
@@ -26,8 +24,6 @@
             android:id="@+id/menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:backgroundTint="#D7D7D7"
             android:visibility="gone"
             android:text="메뉴 관리"
             android:height="60dp"/>
@@ -36,8 +32,6 @@
             android:id="@+id/sold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:backgroundTint="#D7D7D7"
             android:text="메출 관리"
             android:height="60dp"/>
 
@@ -52,8 +46,6 @@
             android:id="@+id/admin_back_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:backgroundTint="#D7D7D7"
             android:gravity="center"
             android:text="@string/back_button_text"
             android:height="60dp"

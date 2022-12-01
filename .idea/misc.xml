@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_Kiosk/app/src/main/res/drawable-v24/honey_mustard_resize.xml" value="0.294" />
+        <entry key="..\:/Android_Kiosk/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.294" />
+        <entry key="..\:/Android_Kiosk/app/src/main/res/drawable-v24/patty_resize.xml" value="0.294" />
+        <entry key="..\:/Android_Kiosk/app/src/main/res/drawable/ic_launcher_background.xml" value="0.294" />
+        <entry key="..\:/Android_Kiosk/app/src/main/res/drawable/round_button.xml" value="0.294" />
+        <entry key="..\:/Android_Kiosk/app/src/main/res/drawable/shadow.xml" value="0.294" />
         <entry key="..\:/Android_Kiosk/app/src/main/res/layout/activity_main.xml" value="0.34103260869565216" />
         <entry key="..\:/Android_Kiosk/app/src/main/res/layout/admin.xml" value="0.12222222222222222" />
         <entry key="..\:/Android_Kiosk/app/src/main/res/layout/admin_menu.xml" value="0.67" />
-        <entry key="..\:/Android_Kiosk/app/src/main/res/layout/admin_password.xml" value="0.34103260869565216" />
+        <entry key="..\:/Android_Kiosk/app/src/main/res/layout/admin_password.xml" value="0.5" />
         <entry key="..\:/Android_Kiosk/app/src/main/res/layout/change_password.xml" value="0.34103260869565216" />
         <entry key="..\:/Android_Kiosk/app/src/main/res/layout/inventory_item.xml" value="0.34103260869565216" />
         <entry key="..\:/Android_Kiosk/app/src/main/res/layout/inventory_table.xml" value="0.34103260869565216" />
