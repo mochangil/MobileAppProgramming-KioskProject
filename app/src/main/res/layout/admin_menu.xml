@@ -10,26 +10,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="임시 메인"/>
+        android:layout_marginRight="40dp">
 
         <Button
-            android:id="@+id/main"
+            android:id="@+id/inventory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="키오스크로"
+            android:text="재고 관리"
             android:height="60dp"/>
 
         <Button
-            android:id="@+id/admin"
+            android:id="@+id/sold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="관리자 메뉴로"
+            android:text="매출 관리"
             android:height="60dp"/>
 
     </LinearLayout>
