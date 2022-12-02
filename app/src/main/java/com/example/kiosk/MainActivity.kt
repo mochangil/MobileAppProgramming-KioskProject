@@ -16,7 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kiosk.R
-import com.example.kiosk.databinding.ActivityMainBinding
+import com.example.kiosk.databinding.ActivityMainpageBinding
 import com.example.kiosk.databinding.DialogCheeseBinding
 import com.example.kiosk.databinding.DialogPattyBinding
 import com.example.kiosk.databinding.DialogSauceBinding
@@ -36,7 +36,7 @@ public class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMainpageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         var num = 0
