@@ -19,7 +19,9 @@ class PaymentActivity: AppCompatActivity() {
         val binding = PaymentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val beforePayment = BeforePayment()
+        val beforePayment = BeforePaymentFragment()
+        val afterPayment = AfterPaymentFragment()
+
         fragmentManager = supportFragmentManager
 
         val dialogBinding = PaymentDialogBinding.inflate(layoutInflater)
@@ -41,13 +43,11 @@ class PaymentActivity: AppCompatActivity() {
             dialog.dismiss()
         }, 10000)
 
-        /*
         dialog.setOnDismissListener() {
-            val afterPayment = AfterPayment()
             transaction = fragmentManager.beginTransaction()
             transaction.replace(binding.fragmentContainer.id, afterPayment).commit()
         }
-        */
+
 
         /*
         binding.paymentCancel.setOnClickListener {

@@ -22,4 +22,9 @@
     <string name="payment_approval_warning">결제가 끝날 때까지 카드를 뽑지 말아주세요.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="receipt_text">영수증을 받아가 주세요.</string>
+    <string name="order_number">주문번호 :</string>
+    <string name="payment_success">결제가 완료되었습니다.\n이용해 주셔서 감사합니다.</string>
+    <string name="payment_close">결제완료 화면은 잠시후 자동으로 닫힙니다.</string>
+    <string name="receipt">receipt</string>
 </resources>

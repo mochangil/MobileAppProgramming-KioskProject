@@ -4,18 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".BeforePayment">
+    tools:context=".BeforePaymentFragment"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/payment_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/payment_image"
         android:src="@drawable/payment_resize"
-        android:layout_marginBottom="130dp"
         app:layout_constraintBottom_toTopOf="@+id/payment_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/payment_image" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
