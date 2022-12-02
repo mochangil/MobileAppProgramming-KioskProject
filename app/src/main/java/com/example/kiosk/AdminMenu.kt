@@ -16,10 +16,7 @@ class AdminMenu : AppCompatActivity() {
             val ivMenuIntent = Intent(this, InventoryTable::class.java)
             startActivity(ivMenuIntent)
         }
-        adminBinding.menu.setOnClickListener {
-            val menuIntent = Intent(this, MenuManagementActivity::class.java)
-            startActivity(menuIntent)
-        }
+
         adminBinding.sold.setOnClickListener {
 
         }
