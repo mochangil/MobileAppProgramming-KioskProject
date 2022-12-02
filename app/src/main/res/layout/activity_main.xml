@@ -1,18 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    >
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:src = "@drawable/bun_up"
+        android:layout_gravity="center_horizontal"
 
-    <TextView
+        />
+    <Button
+        android:id="@+id/btn_mainPatty"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/meat_choice"
+
+        android:onClick="onClick"
+        />
+    <Button
+        android:id="@+id/btn_mainSauce"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+
+        android:background="@drawable/sauce_choice"
+        android:onClick="onClick"
+        />
+    <Button
+        android:id="@+id/btn_mainVegetable"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+
+        android:background="@drawable/vege_choice"
+        android:onClick="onClick"
+        />
+    <Button
+        android:id="@+id/btn_mainCheese"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+
+        android:background="@drawable/cheese_choice"
+        android:layout_gravity="center_horizontal"
+        />
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/addButtonView"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        >
+    </LinearLayout>
+
+    <Button
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:id="@+id/addBtn"
+        android:background="@drawable/add_choice"
+        android:text = " "
+        android:layout_gravity="center_horizontal"
+        />
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/bun_down"
+        />
+
+
+</LinearLayout>
