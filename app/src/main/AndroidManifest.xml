@@ -22,6 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AdminPassword"
+            android:label="AdminPassword"/>
+        <activity
+            android:name=".AdminMenu"
+            android:label="AdminMenu"/>
+        <activity
+            android:name=".InventoryTable"
+            android:label="InventoryMenu"/>
+        <activity
+            android:name=".MenuManagementActivity" />
+        <activity
+            android:name=".PaymentActivity" />
     </application>
 
 </manifest>
