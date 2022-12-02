@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.kiosk
 
 import android.content.Context
 import android.graphics.drawable.Drawable
