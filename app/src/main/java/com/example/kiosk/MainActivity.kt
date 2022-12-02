@@ -1,20 +1,10 @@
 package com.example.kiosk
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.ContextThemeWrapper
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet.Constraint
-import androidx.recyclerview.widget.RecyclerView
 import com.example.kiosk.R
 import com.example.kiosk.databinding.ActivityMainpageBinding
 import com.example.kiosk.databinding.DialogCheeseBinding
@@ -23,12 +13,20 @@ import com.example.kiosk.databinding.DialogSauceBinding
 import com.example.kiosk.databinding.DialogVegetableBinding
 import android.content.Intent
 import com.example.kiosk.databinding.ActivityMainBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 public class MainActivity : AppCompatActivity() {
 
     lateinit var mainPatty: Image
+    lateinit var binding: ActivityMainBinding
     lateinit var drawable : Drawable
+    lateinit var database: DatabaseReference
     var pattyName : String = " "
     var sauceName : String = " "
     var cheeseName : String = " "
@@ -38,7 +36,7 @@ public class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.main.setOnClickListener {
@@ -48,6 +46,19 @@ public class MainActivity : AppCompatActivity() {
         binding.admin.setOnClickListener {
             val adminPassIntent = Intent(this, AdminPassword::class.java)
             startActivity(adminPassIntent)
+        }
+
+        database = Firebase.database.reference
+        database.child("message").setValue("Hello Firebase1")
+        database.addValueEventListener(postListener)
+    }
+
+    val postListener = object: ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val data = snapshot.child("message").value.toString()
+            binding.test.text = data }
+        override fun onCancelled(error: DatabaseError) {
+
         }
     }
 }
