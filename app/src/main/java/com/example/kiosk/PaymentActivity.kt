@@ -1,5 +1,6 @@
 package com.example.kiosk
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Looper
 import androidx.appcompat.app.AlertDialog
@@ -46,6 +47,11 @@ class PaymentActivity: AppCompatActivity() {
         dialog.setOnDismissListener() {
             transaction = fragmentManager.beginTransaction()
             transaction.replace(binding.fragmentContainer.id, afterPayment).commit()
+
+            android.os.Handler(Looper.getMainLooper()).postDelayed({
+                    val mainIntent = Intent(this, MainActivity::class.java)
+                    startActivity(mainIntent)
+            }, 5000)
         }
 
 
