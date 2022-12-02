@@ -1,12 +1,18 @@
 package com.example.kiosk
 
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kiosk.databinding.InventoryDialogBinding
 import com.example.kiosk.databinding.InventoryItemBinding
 import com.example.kiosk.databinding.InventoryTableBinding
 
@@ -29,8 +35,11 @@ class InventoryTable : AppCompatActivity() {
             binding.itemName.text = dataSet[position][0]
             binding.itemNumber.text = dataSet[position][1]
 
+            var context : Context = binding.itemRoot.context
+
             binding.itemRoot.setOnClickListener {
-                // TODO("액티비티로 수정 페이지 제작, 그 화면에서 재고 개수, 이미지 설정")
+                val ivdIntent = Intent(context, InventoryDialog::class.java)
+                context.startActivity(ivdIntent)
             }
         }
         override fun getItemCount(): Int {
