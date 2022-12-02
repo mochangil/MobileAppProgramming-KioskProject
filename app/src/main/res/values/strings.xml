@@ -11,4 +11,13 @@
     <string name="bulgogi_patty">불고기패티</string>
     <string name="pickle">피클</string>
     <string name="honey_mustard">허니 머스타드</string>
+    <string name="payment_number">원</string>
+    <string name="payment_amount">결제금액</string>
+    <string name="line">line</string>
+    <string name="payment_image">payment_image</string>
+    <string name="payment_text">IC 카드를 투입구에 넣어주세요.</string>
+    <string name="payment_warning">30초 내로 삽입이 안될 경우 결제가 취소됩니다!!!</string>
+    <string name="cancel">취소</string>
+    <string name="payment_approval">승인 요청 중입니다. 잠시만 기다려주세요.</string>
+    <string name="payment_approval_warning">결제가 끝날 때까지 카드를 뽑지 말아주세요.</string>
 </resources>

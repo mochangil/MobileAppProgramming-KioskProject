@@ -33,6 +33,8 @@
             android:label="InventoryMenu"/>
         <activity
             android:name=".MenuManagementActivity" />
+        <activity
+            android:name=".PaymentActivity" />
     </application>
 
 </manifest>
