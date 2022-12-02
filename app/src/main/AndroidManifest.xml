@@ -35,9 +35,14 @@
             android:name=".InventoryDialog"
             android:label="InventoryDialog"/>
         <activity
-            android:name=".MenuManagementActivity" />
+            android:name=".MenuManagementActivity"
+            android:label="MenuManagementActivity"/>
         <activity
-            android:name=".PaymentActivity" />
+            android:name=".PaymentActivity"
+            android:label="PaymentActivity"/>
+        <activity
+            android:name=".OrderPage"
+            android:label="OrderPage"/>
     </application>
 
 </manifest>
