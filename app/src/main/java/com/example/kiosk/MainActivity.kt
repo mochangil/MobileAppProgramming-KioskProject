@@ -49,7 +49,7 @@ public class MainActivity : AppCompatActivity() {
         }
 
         database = Firebase.database.reference
-        database.child("message").setValue("Hello Firebase1")
+        database.child("message").setValue("Hello Firebase2")
         database.addValueEventListener(postListener)
     }
 

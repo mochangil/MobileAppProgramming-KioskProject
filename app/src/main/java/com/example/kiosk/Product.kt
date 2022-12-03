@@ -1,6 +1,6 @@
 package com.example.kiosk
 
-class product {
+class Product {
     var name : String = ""
     var num : Int = 0
 

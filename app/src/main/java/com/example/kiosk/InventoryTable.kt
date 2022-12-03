@@ -39,6 +39,7 @@ class InventoryTable : AppCompatActivity() {
 
             binding.itemRoot.setOnClickListener {
                 val ivdIntent = Intent(context, InventoryDialog::class.java)
+                ivdIntent.putExtra("name", binding.itemName.text)
                 context.startActivity(ivdIntent)
             }
         }
