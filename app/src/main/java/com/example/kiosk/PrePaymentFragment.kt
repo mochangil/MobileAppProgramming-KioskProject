@@ -42,6 +42,7 @@ class PrePaymentFragment : Fragment() {
             Toast.makeText(activity, "결제 취소하셨습니다", Toast.LENGTH_SHORT).show()
             activity?.finish()
         }
+
         val confirmButton = v.findViewById<Button>(R.id.pre_payment_confirm)
         val rg1 = v.findViewById<RadioGroup>(R.id.meal_location_radio)
         val rg2 = v.findViewById<RadioGroup>(R.id.payment_method_radio)

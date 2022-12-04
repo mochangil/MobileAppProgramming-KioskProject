@@ -53,7 +53,7 @@ class AfterPaymentFragment : Fragment() {
         android.os.Handler(Looper.getMainLooper()).postDelayed({
             val mainIntent = Intent(activity, MainActivity::class.java)
             startActivity(mainIntent)
-        }, 10000)
+        }, 5000)
 
         return v
     }

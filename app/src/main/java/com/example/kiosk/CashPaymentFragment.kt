@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,12 +39,13 @@ class CashPaymentFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_cash_payment, container, false)
 
         android.os.Handler(Looper.getMainLooper()).postDelayed({
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, AfterPaymentFragment())?.commit()
-        }, 10000)
+            if(activity is PaymentActivity) {
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, AfterPaymentFragment())?.commit()
+            }
+        }, 5000)
 
         v.findViewById<Button>(R.id.payment_cancel).setOnClickListener {
-            Toast.makeText(activity, "결제 취소하셨습니다", Toast.LENGTH_SHORT).show()
-            activity?.finish()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, PrePaymentFragment())?.commit()
         }
         return v
     }

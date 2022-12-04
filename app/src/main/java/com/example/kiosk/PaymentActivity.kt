@@ -22,4 +22,8 @@ class PaymentActivity: AppCompatActivity() {
         transaction = fragmentManager.beginTransaction()
         transaction.replace(binding.fragmentContainer.id, prePayment).commit()
     }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
 }
