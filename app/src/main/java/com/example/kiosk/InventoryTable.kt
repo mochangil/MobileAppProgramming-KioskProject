@@ -28,6 +28,7 @@ class InventoryTable : AppCompatActivity() {
     lateinit var database: DatabaseReference
     lateinit var ivMenuBinding : InventoryTableBinding
     val prod_dataSet = mutableListOf<MutableList<String>>()
+    val prod_keySet = mutableListOf<String>()
 
     val postListener = object: ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -38,6 +39,8 @@ class InventoryTable : AppCompatActivity() {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
                 datas.add(product!!.num.toString())
+                datas.add("patty")
+                datas.add(item.key.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -47,6 +50,8 @@ class InventoryTable : AppCompatActivity() {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
                 datas.add(product!!.num.toString())
+                datas.add("vegetable")
+                datas.add(item.key.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -56,9 +61,9 @@ class InventoryTable : AppCompatActivity() {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
                 datas.add(product!!.num.toString())
-                Log.d("Fire", datas.toString())
+                datas.add("cheese")
+                datas.add(item.key.toString())
                 prod_dataSet.add(ArrayList(datas))
-                Log.d("Fire", prod_dataSet.toString())
                 datas.clear()
             }
             (ivMenuBinding.invRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
@@ -85,6 +90,8 @@ class InventoryTable : AppCompatActivity() {
             binding.itemRoot.setOnClickListener {
                 val ivdIntent = Intent(context, InventoryDialog::class.java)
                 ivdIntent.putExtra("name", binding.itemName.text)
+                ivdIntent.putExtra("table", dataSet[position][2])
+                ivdIntent.putExtra("key", dataSet[position][3])
                 context.startActivity(ivdIntent)
             }
         }
@@ -105,6 +112,7 @@ class InventoryTable : AppCompatActivity() {
         ivMenuBinding.invRecyclerView.layoutManager = LinearLayoutManager(this)
         ivMenuBinding.invRecyclerView.adapter = MyAdapter(prod_dataSet)
         ivMenuBinding.invRecyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+
 
         // 동적으로 추가할 예정이기에 이 코드 유지
         (ivMenuBinding.invRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
