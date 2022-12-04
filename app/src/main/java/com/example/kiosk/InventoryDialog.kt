@@ -26,12 +26,15 @@ class InventoryDialog : AppCompatActivity() {
             finish()
         }
         ivdBinding.ok.setOnClickListener {
-            // TODO("데이터 베이스에 재고 수정하는 기능 추가")
             var name : String = ivdBinding.itemName.text.toString()
             var number : Int = ivdBinding.invNum.text.toString().toInt()
             var product : Product = Product(name, number)
 
             database.child("Product").child(table).child(key).setValue(product)
+            finish()
+        }
+        ivdBinding.delete.setOnClickListener {
+            database.child("Product").child(table).child(key).setValue(null)
             finish()
         }
     }

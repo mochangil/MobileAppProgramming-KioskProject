@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/addGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/pattyB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="패티"
+            android:gravity="center"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:id="@+id/vegB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="야채"
+            android:gravity="center"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/cheeseB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="치즈"
+            android:gravity="center"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/black" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="추가할 메뉴의 이름을 입력해주세요."
+        android:height="60dp"
+        android:textSize="18dp"
+        android:inputType="text"
+        android:gravity="center"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:layout_marginBottom="20dp"/>
+
+    <EditText
+        android:id="@+id/num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="추가할 메뉴의 수량을 입력해주세요."
+        android:height="60dp"
+        android:textSize="18dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:layout_marginBottom="20dp"/>
+
+</LinearLayout>

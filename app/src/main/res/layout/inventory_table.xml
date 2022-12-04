@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/invRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="1dp">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:text="+ 품목 추가하기"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/blue_500"
+        android:layout_margin="30dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:height="40dp"/>
+
+</RelativeLayout>
