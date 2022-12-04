@@ -6,15 +6,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".PrePaymentFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="식사장소와 결제방식을 선택해주세요."
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"/>
+
     <TextView
         android:id="@+id/meal_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/meal_location"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         android:layout_marginTop="20dp"/>
     <RadioGroup
         android:id="@+id/meal_location_radio"
@@ -54,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="결제방식"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/meal_location_radio"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="20dp"/>
@@ -68,6 +78,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
         <RadioButton
+            android:id="@+id/cash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/cash_resize"
@@ -80,6 +91,7 @@
             android:layout_margin="10dp"
             />
         <RadioButton
+            android:id="@+id/card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/card_resize"
