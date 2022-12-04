@@ -10,4 +10,9 @@ class Product {
         this.name = name
         this.num = num
     }
+
+    override fun toString() : String {
+        val str = "Name : " + this.name + " num : " + this.num.toString()
+        return str
+    }
 }

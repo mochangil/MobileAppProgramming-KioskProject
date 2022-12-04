@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -15,16 +16,60 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kiosk.databinding.InventoryDialogBinding
 import com.example.kiosk.databinding.InventoryItemBinding
 import com.example.kiosk.databinding.InventoryTableBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class InventoryTable : AppCompatActivity() {
-    fun getTable() {
-        // TODO("데이터베이스 생성 시 구현")
-    }
 
+    lateinit var database: DatabaseReference
+    lateinit var ivMenuBinding : InventoryTableBinding
+    val prod_dataSet = mutableListOf<MutableList<String>>()
+
+    val postListener = object: ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val datas = mutableListOf<String>()
+
+            val data_patty = snapshot.child("Product").child("patty")
+            for (item in data_patty.children) {
+                val product = item.getValue(Product::class.java)
+                datas.add(product!!.name)
+                datas.add(product!!.num.toString())
+                prod_dataSet.add(ArrayList(datas))
+                datas.clear()
+            }
+
+            val data_veg = snapshot.child("Product").child("vegetable")
+            for (item in data_veg.children) {
+                val product = item.getValue(Product::class.java)
+                datas.add(product!!.name)
+                datas.add(product!!.num.toString())
+                prod_dataSet.add(ArrayList(datas))
+                datas.clear()
+            }
+
+            val data_cheese = snapshot.child("Product").child("cheese")
+            for (item in data_cheese.children) {
+                val product = item.getValue(Product::class.java)
+                datas.add(product!!.name)
+                datas.add(product!!.num.toString())
+                Log.d("Fire", datas.toString())
+                prod_dataSet.add(ArrayList(datas))
+                Log.d("Fire", prod_dataSet.toString())
+                datas.clear()
+            }
+            (ivMenuBinding.invRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
+        }
+        override fun onCancelled(error: DatabaseError) {
+
+        }
+    }
     class MyViewHolder(val binding: InventoryItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     class MyAdapter(val dataSet : MutableList<MutableList<String>>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-        // TODO("더미 데이터 형식에 맞게 수정")
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             return MyViewHolder(InventoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -49,41 +94,17 @@ class InventoryTable : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        database = Firebase.database.reference
+        database.addValueEventListener(postListener)
+
         super.onCreate(savedInstanceState)
 
-        val ivMenuBinding = InventoryTableBinding.inflate(layoutInflater)
+        ivMenuBinding = InventoryTableBinding.inflate(layoutInflater)
         setContentView(ivMenuBinding.root)
 
-        val datas = mutableListOf<String>()
-        val dataSet = mutableListOf<MutableList<String>>()
-        datas.add("shrimp")
-        datas.add("100")
-        dataSet.add(ArrayList(datas))
-        datas.clear()
-
-        datas.add("cow")
-        datas.add("100")
-        dataSet.add(ArrayList(datas))
-        datas.clear()
-
-        datas.add("tomato")
-        datas.add("100")
-        dataSet.add(ArrayList(datas))
-        datas.clear()
-
-        datas.add("lettuce")
-        datas.add("100")
-        dataSet.add(ArrayList(datas))
-        datas.clear()
-
         ivMenuBinding.invRecyclerView.layoutManager = LinearLayoutManager(this)
-        ivMenuBinding.invRecyclerView.adapter = MyAdapter(dataSet)
+        ivMenuBinding.invRecyclerView.adapter = MyAdapter(prod_dataSet)
         ivMenuBinding.invRecyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
-
-        datas.add("pickle")
-        datas.add("100")
-        dataSet.add(ArrayList(datas))
-        datas.clear()
 
         // 동적으로 추가할 예정이기에 이 코드 유지
         (ivMenuBinding.invRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
