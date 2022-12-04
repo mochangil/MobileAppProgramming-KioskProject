@@ -32,11 +32,5 @@
             android:text="관리자 메뉴로"
             android:height="60dp"/>
 
-        <TextView
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="firebase 테스트" />
-
     </LinearLayout>
 </LinearLayout>

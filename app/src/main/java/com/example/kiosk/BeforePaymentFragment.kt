@@ -39,12 +39,12 @@ class BeforePaymentFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_before_payment, container, false)
-        view.findViewById<Button>(R.id.payment_cancel).setOnClickListener {
+        val v = inflater.inflate(R.layout.fragment_before_payment, container, false)
+        v.findViewById<Button>(R.id.payment_cancel).setOnClickListener {
             Toast.makeText(activity, "결제 취소하셨습니다", Toast.LENGTH_SHORT).show()
             activity?.finish()
         }
-        return view
+        return v
     }
 
     companion object {

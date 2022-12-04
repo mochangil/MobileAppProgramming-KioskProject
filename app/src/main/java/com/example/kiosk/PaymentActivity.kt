@@ -51,7 +51,7 @@ class PaymentActivity: AppCompatActivity() {
             android.os.Handler(Looper.getMainLooper()).postDelayed({
                     val mainIntent = Intent(this, MainActivity::class.java)
                     startActivity(mainIntent)
-            }, 5000)
+            }, 10000)
         }
 
 
