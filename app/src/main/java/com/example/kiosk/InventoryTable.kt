@@ -82,6 +82,40 @@ class InventoryTable : AppCompatActivity() {
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
+
+            val data_side = snapshot.child("Product").child("side")
+            for (item in data_side.children) {
+                val product = item.getValue(Product::class.java)
+                datas.add(product!!.name)
+                var item_num = product.num.toString()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
+                datas.add("side")
+                datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
+                prod_dataSet.add(ArrayList(datas))
+                datas.clear()
+            }
+
+            val data_drink = snapshot.child("Product").child("drink")
+            for (item in data_drink.children) {
+                val product = item.getValue(Product::class.java)
+                datas.add(product!!.name)
+                var item_num = product.num.toString()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
+                datas.add("drink")
+                datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
+                prod_dataSet.add(ArrayList(datas))
+                datas.clear()
+            }
             (ivMenuBinding.invRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
         }
         override fun onCancelled(error: DatabaseError) {
@@ -140,10 +174,12 @@ class InventoryTable : AppCompatActivity() {
         var is_patty : Boolean = false
         var is_veg : Boolean = false
         var is_cheese : Boolean = false
+        var is_side : Boolean = false
+        var is_drink : Boolean = false
 
         val eventHandler = object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
-                if (is_patty || is_cheese || is_veg) {
+                if (is_patty || is_cheese || is_veg || is_side || is_drink) {
                     var name : String = addBinding.menu.text.toString()
                     var number : Int = addBinding.num.text.toString().toInt()
                     var price : Int = addBinding.numPrice.text.toString().toInt()
@@ -155,12 +191,18 @@ class InventoryTable : AppCompatActivity() {
                         database.child("Product").child("vegetable").child(name).setValue(product)
                     } else if (is_cheese) {
                         database.child("Product").child("cheese").child(name).setValue(product)
+                    } else if (is_side) {
+                        database.child("Product").child("side").child(name).setValue(product)
+                    } else if (is_drink) {
+                        database.child("Product").child("drink").child(name).setValue(product)
                     }
                 }
 
                 is_patty = false
                 is_veg = false
                 is_cheese = false
+                is_side = false
+                is_drink = false
 
                 // 액티비티 새로 고침
                 finish()
@@ -177,12 +219,14 @@ class InventoryTable : AppCompatActivity() {
             addBinding.addGroup.setOnCheckedChangeListener { group, checkID ->
                 if (checkID == R.id.pattyB) {
                     is_patty = true
-                }
-                else if (checkID == R.id.vegB) {
+                } else if (checkID == R.id.vegB) {
                     is_veg = true
-                }
-                else if (checkID == R.id.cheeseB) {
+                } else if (checkID == R.id.cheeseB) {
                     is_cheese = true
+                } else if (checkID == R.id.sideB) {
+                    is_side = true
+                } else if (checkID == R.id.drinkB) {
+                    is_drink = true
                 }
             }
 
