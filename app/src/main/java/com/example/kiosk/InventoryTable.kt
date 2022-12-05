@@ -35,9 +35,14 @@ class InventoryTable : AppCompatActivity() {
             for (item in data_patty.children) {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
-                datas.add(product!!.num.toString())
+                var item_num = product.num.toString()
+                var item_price = product.get_price_string()
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
                 datas.add("patty")
                 datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -46,9 +51,14 @@ class InventoryTable : AppCompatActivity() {
             for (item in data_veg.children) {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
-                datas.add(product!!.num.toString())
+                var item_num = product.num.toString()
+                var item_price = product.get_price_string()
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
                 datas.add("vegetable")
                 datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -57,9 +67,14 @@ class InventoryTable : AppCompatActivity() {
             for (item in data_cheese.children) {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
-                datas.add(product!!.num.toString())
+                var item_num = product.num.toString()
+                var item_price = product.get_price_string()
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
                 datas.add("cheese")
                 datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -89,6 +104,8 @@ class InventoryTable : AppCompatActivity() {
                 ivdIntent.putExtra("name", binding.itemName.text)
                 ivdIntent.putExtra("table", dataSet[position][2])
                 ivdIntent.putExtra("key", dataSet[position][3])
+                ivdIntent.putExtra("num", dataSet[position][4])
+                ivdIntent.putExtra("price", dataSet[position][5])
                 context.startActivity(ivdIntent)
                 dataSet.clear()
             }
@@ -125,7 +142,8 @@ class InventoryTable : AppCompatActivity() {
                 if (is_patty || is_cheese || is_veg) {
                     var name : String = addBinding.menu.text.toString()
                     var number : Int = addBinding.num.text.toString().toInt()
-                    var product = Product(name, number)
+                    var price : Int = addBinding.numPrice.text.toString().toInt()
+                    var product = Product(name, number, price)
 
                     if (is_patty) {
                         database.child("Product").child("patty").child(name).setValue(product)
