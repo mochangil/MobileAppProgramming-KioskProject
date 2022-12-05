@@ -24,9 +24,4 @@ class Product {
         val str = "Name : " + this.name + " num : " + this.num.toString()
         return str
     }
-
-    fun get_price_string() : String {
-        val dec = DecimalFormat("#,###")
-        return dec.format(price)
-    }
 }

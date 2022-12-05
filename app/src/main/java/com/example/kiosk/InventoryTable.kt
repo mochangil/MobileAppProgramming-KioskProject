@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
 
 class InventoryTable : AppCompatActivity() {
 
@@ -36,7 +37,8 @@ class InventoryTable : AppCompatActivity() {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
                 var item_num = product.num.toString()
-                var item_price = product.get_price_string()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
                 var show_str = item_price + "원, " + item_num + "개"
                 datas.add(show_str)
                 datas.add("patty")
@@ -52,7 +54,8 @@ class InventoryTable : AppCompatActivity() {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
                 var item_num = product.num.toString()
-                var item_price = product.get_price_string()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
                 var show_str = item_price + "원, " + item_num + "개"
                 datas.add(show_str)
                 datas.add("vegetable")
@@ -68,7 +71,8 @@ class InventoryTable : AppCompatActivity() {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
                 var item_num = product.num.toString()
-                var item_price = product.get_price_string()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
                 var show_str = item_price + "원, " + item_num + "개"
                 datas.add(show_str)
                 datas.add("cheese")
