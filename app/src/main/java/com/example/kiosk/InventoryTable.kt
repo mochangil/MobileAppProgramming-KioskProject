@@ -138,7 +138,7 @@ class InventoryTable : AppCompatActivity() {
             var context : Context = binding.itemRoot.context
 
             binding.itemRoot.setOnClickListener {
-                val ivdIntent = Intent(context, InventoryDialog::class.java)
+                val ivdIntent = Intent(context, InventoryActivity::class.java)
                 ivdIntent.putExtra("name", binding.itemName.text)
                 ivdIntent.putExtra("table", dataSet[position][2])
                 ivdIntent.putExtra("key", dataSet[position][3])

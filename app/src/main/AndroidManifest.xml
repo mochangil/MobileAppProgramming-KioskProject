@@ -30,19 +30,29 @@
             android:label="AdminMenu"/>
         <activity
             android:name=".InventoryTable"
-            android:label="InventoryMenu"/>
+            android:label="InventoryTable"/>
         <activity
-            android:name=".InventoryDialog"
-            android:label="InventoryDialog"/>
-        <activity
-            android:name=".MenuManagementActivity"
-            android:label="MenuManagementActivity"/>
+            android:name=".InventoryActivity"
+            android:label="InventoryActivity"/>
         <activity
             android:name=".PaymentActivity"
             android:label="PaymentActivity"/>
         <activity
             android:name=".OrderPage"
             android:label="OrderPage"/>
+        <activity
+            android:name=".OrderMonthTable"
+            android:label="OrderMonthTable"/>
+        <activity
+            android:name=".OrderDayTable"
+            android:label="OrderDayTable"/>
+        <activity
+            android:name=".OrderLogTable"
+            android:label="OrderLogTable"/>
+        <activity
+            android:name=".OrderLogActivity"
+            android:label="OrderLogActivity"/>
+
     </application>
 
 </manifest>

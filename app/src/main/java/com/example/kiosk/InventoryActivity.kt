@@ -1,7 +1,6 @@
 package com.example.kiosk
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kiosk.databinding.InventoryDialogBinding
 import com.google.firebase.database.DatabaseReference
@@ -9,7 +8,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.text.DecimalFormat
 
-class InventoryDialog : AppCompatActivity() {
+class InventoryActivity : AppCompatActivity() {
     lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
