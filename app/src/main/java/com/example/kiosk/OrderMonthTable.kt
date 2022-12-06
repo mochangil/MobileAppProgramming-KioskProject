@@ -31,7 +31,13 @@ class OrderMonthTable : AppCompatActivity() {
                 var year_month : String = item.key.toString()
                 var year : Int = year_month.toInt() / 100
                 var month : Int = year_month.toInt() % 100
-                var show_year_month : String = year.toString() + "년 " + month.toString() + "월"
+                var month_string : String
+                if (month < 10) {
+                    month_string = "0" + month.toString()
+                } else {
+                    month_string = month.toString()
+                }
+                var show_year_month : String = year.toString() + "년 " + month_string + "월"
                 ym_list.add(show_year_month)
                 org_ym_list.add(year_month)
             }
