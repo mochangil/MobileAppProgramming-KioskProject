@@ -80,6 +80,46 @@ class AfterPaymentFragment : Fragment() {
 
             database.child("Order").child(year_month).child(day).child(orderNumber.toString()).setValue(dummy_order)
             v.findViewById<TextView>(R.id.order_number).append(orderNumber.toString())
+
+            // 수량 감소 로직
+            for (item in dummy_order.lists) {
+                var name : String = item.name
+                var num : Int = item.num.toInt()
+
+                var check1 = snapshot.child("Product").child("cheese").child(name)
+                var check2 = snapshot.child("Product").child("drink").child(name)
+                var check3 = snapshot.child("Product").child("patty").child(name)
+                var check4 = snapshot.child("Product").child("side").child(name)
+                var check5 = snapshot.child("Product").child("vegetable").child(name)
+
+                var check1_num = check1.childrenCount
+                var check2_num = check2.childrenCount
+                var check3_num = check3.childrenCount
+                var check4_num = check4.childrenCount
+                var check5_num = check5.childrenCount
+
+                if (check1_num > 0) {
+                    var product = check1.getValue(Product::class.java)
+                    product!!.num = product.num - num
+                    database.child("Product").child("cheese").child(name).setValue(product)
+                } else if (check2_num > 0) {
+                    var product = check2.getValue(Product::class.java)
+                    product!!.num = product.num - num
+                    database.child("Product").child("drink").child(name).setValue(product)
+                } else if (check3_num > 0) {
+                    var product = check3.getValue(Product::class.java)
+                    product!!.num = product.num - num
+                    database.child("Product").child("patty").child(name).setValue(product)
+                } else if (check4_num > 0) {
+                    var product = check4.getValue(Product::class.java)
+                    product!!.num = product.num - num
+                    database.child("Product").child("side").child(name).setValue(product)
+                } else if (check5_num > 0) {
+                    var product = check5.getValue(Product::class.java)
+                    product!!.num = product.num - num
+                    database.child("Product").child("vegetable").child(name).setValue(product)
+                }
+            }
         }
         override fun onCancelled(error: DatabaseError) {
             // Failed to read value
