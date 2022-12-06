@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kiosk.databinding.InventoryTableBinding
 import com.example.kiosk.databinding.OrderItemBinding
+import com.example.kiosk.databinding.OrderLogTableBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,7 +21,7 @@ import com.google.firebase.ktx.Firebase
 
 class OrderMonthTable : AppCompatActivity() {
     lateinit var database: DatabaseReference
-    lateinit var ivMenuBinding : InventoryTableBinding
+    lateinit var OLTBinding : OrderLogTableBinding
     var ym_list = mutableListOf<String>()
     var org_ym_list = mutableListOf<String>()
 
@@ -42,7 +43,7 @@ class OrderMonthTable : AppCompatActivity() {
                 org_ym_list.add(year_month)
             }
 
-            (ivMenuBinding.invRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
+            (OLTBinding.orderRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
         }
         override fun onCancelled(error: DatabaseError) {
 
@@ -80,14 +81,14 @@ class OrderMonthTable : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        ivMenuBinding = InventoryTableBinding.inflate(layoutInflater)
-        setContentView(ivMenuBinding.root)
+        OLTBinding = OrderLogTableBinding.inflate(layoutInflater)
+        setContentView(OLTBinding.root)
 
-        ivMenuBinding.invRecyclerView.layoutManager = LinearLayoutManager(this)
-        ivMenuBinding.invRecyclerView.adapter = MyAdapter(ym_list, org_ym_list)
-        ivMenuBinding.invRecyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        OLTBinding.orderRecyclerView.layoutManager = LinearLayoutManager(this)
+        OLTBinding.orderRecyclerView.adapter = MyAdapter(ym_list, org_ym_list)
+        OLTBinding.orderRecyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
         // 동적으로 추가할 예정이기에 이 코드 유지
-        (ivMenuBinding.invRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
+        (OLTBinding.orderRecyclerView.adapter as MyAdapter).notifyDataSetChanged()
     }
 }
