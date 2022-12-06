@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/sideFrenchfriesIcon"
+        android:background="@drawable/frenchfries"
+        android:button ="@null"
+        android:layout_margin = "20dp"
+        android:layout_marginLeft="40dp"
+        />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/sideCheesefriesIcon"
+        android:background="@drawable/cheesefries"
+        android:button ="@null"
+        android:layout_margin = "20dp"
+        android:layout_marginLeft="40dp"
+        />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/sideChickenfriesIcon"
+        android:background="@drawable/chickenfries"
+        android:button ="@null"
+        android:layout_margin = "20dp"
+        android:layout_marginLeft="40dp"
+        />
+</LinearLayout>

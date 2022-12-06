@@ -43,6 +43,9 @@
         <activity
             android:name=".OrderPage"
             android:label="OrderPage"/>
+        <activity
+            android:name=".AddMenuDialog"
+            android:label="AddMenuDialog"/>
     </application>
 
 </manifest>

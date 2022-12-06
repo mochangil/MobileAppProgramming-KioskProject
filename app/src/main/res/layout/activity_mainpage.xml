@@ -6,8 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/briefMenu"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+
+        >
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:id="@+id/burgerChoice"
+        android:orientation="vertical">
     <ImageView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="100dp"
         android:layout_width="120dp"
         android:layout_height="20dp"
         android:src = "@drawable/bun_up"
@@ -68,13 +82,98 @@
         android:layout_gravity="center_horizontal"
         />
 
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/bun_down"
         />
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sideMenuLayout"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addSideButtonView"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+
+            >
+        </LinearLayout>
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/addSideBtn"
+            android:background="@drawable/add_choice"
+            android:text = " "
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/drinkMenuLayout"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addDrinkButtonView"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+
+            >
+        </LinearLayout>
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/addDrinkBtn"
+            android:background="@drawable/add_choice"
+            android:text = " "
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderCompleteLayout"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        >
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/moreOrder"
+            android:background="@drawable/add_choice"
+            android:text = " "
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            />
+
+    <Button
+        android:id="@+id/completeOrder"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/add_choice"
+        android:text=" "
+        android:layout_weight="1"
+        />
+
+    </LinearLayout>
 
 
 </LinearLayout>
