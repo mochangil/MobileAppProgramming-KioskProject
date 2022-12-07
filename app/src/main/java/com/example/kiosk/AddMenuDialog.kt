@@ -36,23 +36,38 @@ public class AddMenuDialog : AppCompatActivity() {
         val binding = DialogAddmenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val data1 = intent.getStringExtra("data1")
+        Log.d("sendIntentData","Yes")
+
         binding.addPatty.setOnClickListener{
             val dialog = PattyDialog(this)
             dialog.onDialog()
 
             dialog.setOnClickListener(object : PattyDialog.OnDialogClickListener {
                 override fun onClicked(name: String) {
-
+                    Log.d("setOnClickDialog", "onclicked")
                     pattyName = name
                     Log.d("dialog",name)
                     when (name) {
-                        "bbq" -> drawable = resources.getDrawable(R.drawable.bbq)
-                        "chicken" -> drawable = resources.getDrawable(R.drawable.chicken)
-                        "egg" -> drawable = resources.getDrawable(R.drawable.eggsalad)
-                        "shrimp" -> drawable = resources.getDrawable(R.drawable.shrimp)
-                        "steak" -> drawable = resources.getDrawable(R.drawable.steak)
+                        "bbq" -> {
+                            drawable = resources.getDrawable(R.drawable.bbq)
+                        }
+                        "chicken" -> {
+                            drawable = resources.getDrawable(R.drawable.chicken)
+                        }
+                        "egg" -> {
+                            drawable = resources.getDrawable(R.drawable.eggsalad)
+                        }
+                        "shrimp" -> {
+                            drawable = resources.getDrawable(R.drawable.shrimp)
+                        }
+                        "steak" -> {
+                            drawable = resources.getDrawable(R.drawable.steak)
+                        }
                     }
-
+                    intent.putExtra("result","$pattyName")
+                    setResult(RESULT_OK,intent)
+                    finish()
                 }
             })
         }
@@ -72,7 +87,9 @@ public class AddMenuDialog : AppCompatActivity() {
                         "sweetchili" -> drawable = resources.getDrawable(R.drawable.sweetchilisauce)
                         "tartar" -> drawable = resources.getDrawable(R.drawable.tartarsauce)
                     }
-                    drawable
+                    intent.putExtra("result","$sauceName")
+                    setResult(RESULT_OK,intent)
+                    finish()
                 }
             })
         }
@@ -89,7 +106,9 @@ public class AddMenuDialog : AppCompatActivity() {
                         "mozza" -> drawable = resources.getDrawable(R.drawable.mozzacheese)
                         "cheddar" -> drawable = resources.getDrawable(R.drawable.cheddarcheese)
                     }
-                    drawable
+                    intent.putExtra("result","$cheeseName")
+                    setResult(RESULT_OK,intent)
+                    finish()
                 }
             })
         }
@@ -118,7 +137,9 @@ public class AddMenuDialog : AppCompatActivity() {
                         }
                     }
 //                    binding.btnMainVegetable.text = vegetableName
-                    drawable
+                    intent.putExtra("result","$vegetableName")
+                    setResult(RESULT_OK,intent)
+                    finish()
                 }
                 //만약 닫기 클릭 후에 변경되기 하려면 setPositiveButton의 두번째 인자로 리스너 등록
                 setPositiveButton("닫기", null)

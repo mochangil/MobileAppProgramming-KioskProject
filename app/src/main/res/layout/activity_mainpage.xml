@@ -17,50 +17,54 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="400dp"
         android:id="@+id/burgerChoice"
         android:orientation="vertical">
     <ImageView
-        android:layout_marginTop="100dp"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
         android:src = "@drawable/bun_up"
         android:layout_gravity="center_horizontal"
 
         />
     <Button
         android:id="@+id/btn_mainPatty"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
+        android:layout_width="150dp"
+        android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/meat_choice"
+        android:background="@drawable/meatchoice"
+        android:layout_margin="5dp"
 
         android:onClick="onClick"
         />
     <Button
         android:id="@+id/btn_mainSauce"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
+        android:layout_width="150dp"
+        android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
 
-        android:background="@drawable/sauce_choice"
+        android:background="@drawable/saucechoice"
         android:onClick="onClick"
         />
     <Button
         android:id="@+id/btn_mainVegetable"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
+        android:layout_width="150dp"
+        android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
 
-        android:background="@drawable/vege_choice"
+        android:background="@drawable/vegechoice"
         android:onClick="onClick"
         />
     <Button
         android:id="@+id/btn_mainCheese"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
+        android:layout_width="150dp"
+        android:layout_height="20dp"
+        android:layout_margin="5dp"
 
-        android:background="@drawable/cheese_choice"
+        android:background="@drawable/cheesechoice"
         android:layout_gravity="center_horizontal"
         />
     <LinearLayout
@@ -74,8 +78,8 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="30dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:id="@+id/addBtn"
         android:background="@drawable/add_choice"
         android:text = " "
@@ -155,7 +159,7 @@
         >
         <Button
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="40dp"
             android:id="@+id/moreOrder"
             android:background="@drawable/add_choice"
             android:text = " "
@@ -163,14 +167,14 @@
             android:layout_weight="1"
             />
 
-    <Button
-        android:id="@+id/completeOrder"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/add_choice"
-        android:text=" "
-        android:layout_weight="1"
+        <Button
+            android:id="@+id/completeOrder"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/add_choice"
+            android:text=" "
+            android:layout_weight="1"
         />
 
     </LinearLayout>

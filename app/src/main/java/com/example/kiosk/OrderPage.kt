@@ -12,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet.Constraint
@@ -29,7 +31,10 @@ import kotlin.math.roundToInt
 public class OrderPage : AppCompatActivity() {
 
 
-    lateinit var drawable: Drawable
+
+    lateinit var requestLaunch: ActivityResultLauncher<Intent>
+    lateinit var newbutton : Button
+
     var addmenucount: Int = 0
     var sidecount: Int = 0
     var drinkcount: Int = 0
@@ -51,59 +56,55 @@ public class OrderPage : AppCompatActivity() {
 
         var num = 0
 
+
+        requestLaunch = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()){
+            lateinit var drawable: Drawable
+            if(it.resultCode == RESULT_OK){
+                val resultData = it.data?.getStringExtra("result")
+                Log.d("finishJob","yes")
+                drawable = matchDrawable(resultData)
+                newbutton.background = drawable
+
+            }
+        }
         binding.addBtn.setOnClickListener {
-            val addOrderIntent = Intent(this, AddMenuDialog::class.java)
-            startActivity(addOrderIntent)
+            if(addmenucount <= 2) {
+                val addOrderIntent = Intent(this, AddMenuDialog::class.java)
+                intent.putExtra("data1", "hi")
+                requestLaunch.launch(addOrderIntent)
+
+                var newStyle = ContextThemeWrapper(this, R.style.Button_Border)
+                var btn = Button(newStyle)
+                val layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                btn.layoutParams = layoutParams
+                layoutParams.width = changeDP(150)
+                layoutParams.height = changeDP(20)
+                layoutParams.setMargins(changeDP(5), changeDP(5), changeDP(5), changeDP(5))
+//                when (addmenucount) {
+//                    0 -> btn.id = R.id.addMenu1
+//                    1 -> btn.id = R.id.addMenu2
+//                    2 -> btn.id = R.id.addMenu3
+//                }
+                binding.addButtonView.addView(btn)
+                addmenucount++
+                newbutton = btn
+//                newbutton = findViewById<Button>(btn.id)
+                newbutton.setOnClickListener{
+                    binding.addButtonView.removeView(btn)
+                    addmenucount--
+                }
+            }
+            else{
+                Toast.makeText(this, "더이상 메뉴를 추가할 수 없습니다!", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
-//        binding.addBtn.setOnClickListener {
-//            if (addmenucount <=2) {
-//                val dialog = AddMenuDialog(this)
-//                dialog.onDialog()
-//
-//                var newStyle = ContextThemeWrapper(this, R.style.Button_Border)
-//                var btn = Button(newStyle)
-//                val layoutParams = LinearLayout.LayoutParams(
-//                    LinearLayout.LayoutParams.MATCH_PARENT,
-//                    LinearLayout.LayoutParams.WRAP_CONTENT
-//                )
-//                btn.layoutParams = layoutParams
-//                layoutParams.width = changeDP(120)
-//                layoutParams.height = changeDP(30)
-//
-//                dialog.setOnClickListener(object : AddMenuDialog.OnDialogClickListener {
-//                    override fun onClicked(name: String) {
-//
-//                        pattyName = name
-//                        Log.d("dialog", name)
-//                        when (name) {
-//                            "bbq" -> drawable = resources.getDrawable(R.drawable.bbq)
-//                            "chicken" -> drawable = resources.getDrawable(R.drawable.chicken)
-//                            "egg" -> drawable = resources.getDrawable(R.drawable.eggsalad)
-//                            "shrimp" -> drawable = resources.getDrawable(R.drawable.shrimp)
-//                            "steak" -> drawable = resources.getDrawable(R.drawable.steak)
-//                        }
-//                        when (addmenucount) {
-//                            0 -> btn.id = R.id.addMenu1
-//                            1 -> btn.id = R.id.addMenu2
-//                            2 -> btn.id = R.id.addMenu3
-//                        }
-//                        binding.addButtonView.addView(btn)
-//                        addmenucount++
-//                        var newbutton = findViewById<Button>(btn.id)
-//                        newbutton.background = drawable
-//                        newbutton.setOnClickListener{
-//
-//                        }
-//                    }
-//                })
-//
-//            }
-//            else{
-//                Toast.makeText(this, "더이상 메뉴를 추가할 수 없습니다!", Toast.LENGTH_SHORT).show()
-//            }
-//
-//        }
+
 
         binding.btnMainPatty.setOnClickListener {
             val dialog = PattyDialog(this)
@@ -111,7 +112,7 @@ public class OrderPage : AppCompatActivity() {
 
             dialog.setOnClickListener(object : PattyDialog.OnDialogClickListener {
                 override fun onClicked(name: String) {
-
+                    lateinit var drawable: Drawable
                     pattyName = name
                     Log.d("dialog",name)
                     when (name) {
@@ -134,7 +135,7 @@ public class OrderPage : AppCompatActivity() {
 
             dialog.setOnClickListener(object : SauceDialog.OnDialogClickListener {
                 override fun onClicked(name: String) {
-
+                    lateinit var drawable: Drawable
                     sauceName = name
                     Log.d("dialog",name)
                     when (name) {
@@ -155,7 +156,7 @@ public class OrderPage : AppCompatActivity() {
 
             dialog.setOnClickListener(object : CheeseDialog.OnDialogClickListener {
                 override fun onClicked(name: String) {
-
+                    lateinit var drawable: Drawable
                     cheeseName = name
                     Log.d("dialog",name)
                     when (name) {
@@ -169,6 +170,7 @@ public class OrderPage : AppCompatActivity() {
 
         binding.btnMainVegetable.setOnClickListener {
             val dialogBinding = DialogVegetableBinding.inflate(layoutInflater)
+            lateinit var drawable: Drawable
             AlertDialog.Builder(this).run {
                 setTitle("패티 결정")
                 setView(dialogBinding.root)
@@ -179,15 +181,15 @@ public class OrderPage : AppCompatActivity() {
                             drawable = resources.getDrawable(R.drawable.lettuce)
                         }
                         R.id.onionIcon -> {
-                            vegetableName = "chicken"
+                            vegetableName = "onion"
                             drawable = resources.getDrawable(R.drawable.onion)
                         }
                         R.id.pickleIcon -> {
-                            vegetableName = "eggsalad"
+                            vegetableName = "pickle"
                             drawable = resources.getDrawable(R.drawable.pickle)
                         }
                         R.id.tomatoIcon -> {
-                            vegetableName = "shrimp"
+                            vegetableName = "tomato"
                             drawable = resources.getDrawable(R.drawable.tomato)
                         }
                     }
@@ -230,14 +232,10 @@ public class OrderPage : AppCompatActivity() {
                             "chickenfries" -> sideimg =
                                 resources.getDrawable(R.drawable.chickenfries)
                         }
-                        when (addmenucount) {
-                            0 -> btn.id = R.id.addSide1
-                            1 -> btn.id = R.id.addSide2
-                            2 -> btn.id = R.id.addSide3
-                        }
+
                         binding.addSideButtonView.addView(btn)
                         sidecount++
-                        var newbutton = findViewById<Button>(btn.id)
+                        newbutton = btn
                         newbutton.background = sideimg
                         newbutton.setOnClickListener{
                             binding.addSideButtonView.removeView(btn)
@@ -274,14 +272,10 @@ public class OrderPage : AppCompatActivity() {
                             "coke" -> drinkimg =
                                 resources.getDrawable(R.drawable.coke)
                         }
-                        when (drinkcount) {
-                            0 -> btn.id = R.id.addSide1
-                            1 -> btn.id = R.id.addSide2
-                            2 -> btn.id = R.id.addSide3
-                        }
+
                         binding.addDrinkButtonView.addView(btn)
                         drinkcount++
-                        var newbutton = findViewById<Button>(btn.id)
+                        newbutton = btn
                         newbutton.background = drinkimg
                         newbutton.setOnClickListener{
                             binding.addDrinkButtonView.removeView(btn)
@@ -296,10 +290,10 @@ public class OrderPage : AppCompatActivity() {
             binding.addDrinkButtonView.removeAllViews()
             binding.addSideButtonView.removeAllViews()
             binding.addButtonView.removeAllViews()
-            binding.btnMainPatty.background = resources.getDrawable(R.drawable.meat_choice)
-            binding.btnMainCheese.background = resources.getDrawable(R.drawable.cheese_choice)
-            binding.btnMainSauce.background = resources.getDrawable(R.drawable.sauce_choice)
-            binding.btnMainVegetable.background = resources.getDrawable(R.drawable.vege_choice)
+            binding.btnMainPatty.background = resources.getDrawable(R.drawable.meatchoice)
+            binding.btnMainCheese.background = resources.getDrawable(R.drawable.cheesechoice)
+            binding.btnMainSauce.background = resources.getDrawable(R.drawable.saucechoice)
+            binding.btnMainVegetable.background = resources.getDrawable(R.drawable.vegechoice)
             addmenucount = 0; sidecount = 0; drinkcount= 0
             pattyName=" "; sauceName=" "; cheeseName = " "
             sideName=" ";drinkName = " ";vegetableName=" "
@@ -309,10 +303,10 @@ public class OrderPage : AppCompatActivity() {
             binding.addDrinkButtonView.removeAllViews()
             binding.addSideButtonView.removeAllViews()
             binding.addButtonView.removeAllViews()
-            binding.btnMainPatty.background = resources.getDrawable(R.drawable.meat_choice)
-            binding.btnMainCheese.background = resources.getDrawable(R.drawable.cheese_choice)
-            binding.btnMainSauce.background = resources.getDrawable(R.drawable.sauce_choice)
-            binding.btnMainVegetable.background = resources.getDrawable(R.drawable.vege_choice)
+            binding.btnMainPatty.background = resources.getDrawable(R.drawable.meatchoice)
+            binding.btnMainCheese.background = resources.getDrawable(R.drawable.cheesechoice)
+            binding.btnMainSauce.background = resources.getDrawable(R.drawable.saucechoice)
+            binding.btnMainVegetable.background = resources.getDrawable(R.drawable.vegechoice)
             addmenucount = 0; sidecount = 0; drinkcount= 0
             pattyName=" "; sauceName=" "; cheeseName = " "
             sideName=" ";drinkName = " ";vegetableName=" "
@@ -329,5 +323,68 @@ public class OrderPage : AppCompatActivity() {
         var displayMetrics = resources.displayMetrics
         var dp = (value * displayMetrics.density).roundToInt()
         return dp
+    }
+    private fun matchDrawable(value: String?): Drawable{
+        var d1 = resources.getDrawable(R.drawable.bbq)
+        when(value){
+            "bbq" -> d1 = resources.getDrawable(R.drawable.bbq)
+            "shrimp" -> d1 = resources.getDrawable(R.drawable.shrimp)
+            "egg" -> d1 = resources.getDrawable(R.drawable.eggsalad)
+            "steak" -> d1 = resources.getDrawable(R.drawable.steak)
+            "chicken" -> return resources.getDrawable(R.drawable.chicken)
+            "bbqsauce" -> d1 = resources.getDrawable(R.drawable.bbqsauce)
+            "hotchili" -> d1 = resources.getDrawable(R.drawable.hotchilisauce)
+            "sweetchili" -> d1 = resources.getDrawable(R.drawable.sweetchilisauce)
+            "garlic" -> d1 = resources.getDrawable(R.drawable.garlicsauce)
+            "tartar" -> d1 = resources.getDrawable(R.drawable.tartarsauce)
+            "mozza" -> d1 = resources.getDrawable(R.drawable.mozzacheese)
+            "cheddar" -> d1 = resources.getDrawable(R.drawable.cheddarcheese)
+            "lettuce" -> d1 = resources.getDrawable(R.drawable.lettuce)
+            "onion" -> d1 = resources.getDrawable(R.drawable.onion)
+            "pickle" -> d1 = resources.getDrawable(R.drawable.pickle)
+            "tomato" -> d1 = resources.getDrawable(R.drawable.tomato)
+        }
+        return d1
+    }
+    private fun matchPattyDrawable(value: String?): Drawable{
+        var d1 = resources.getDrawable(R.drawable.bbq)
+        when(value){
+            "bbq" -> d1 = resources.getDrawable(R.drawable.bbq)
+            "shrimp" -> d1 = resources.getDrawable(R.drawable.shrimp)
+            "egg" -> d1 = resources.getDrawable(R.drawable.eggsalad)
+            "steak" -> d1 = resources.getDrawable(R.drawable.steak)
+            "chicken" -> return resources.getDrawable(R.drawable.chicken)
+        }
+        return d1
+    }
+    private fun matchSauceDrawable(value: String?): Drawable{
+        lateinit var d1 : Drawable
+        when(value){
+            "bbq" -> d1 = resources.getDrawable(R.drawable.bbqsauce)
+            "hotchili" -> d1 = resources.getDrawable(R.drawable.hotchilisauce)
+            "sweetchili" -> d1 = resources.getDrawable(R.drawable.sweetchilisauce)
+            "garlic" -> d1 = resources.getDrawable(R.drawable.garlicsauce)
+            "tartar" -> d1 = resources.getDrawable(R.drawable.tartarsauce)
+        }
+        return d1
+    }
+    private fun matchCheeseDrawable(value: String?): Drawable{
+        lateinit var d1 : Drawable
+        when(value){
+            "mozza" -> d1 = resources.getDrawable(R.drawable.mozzacheese)
+            "cheddar" -> d1 = resources.getDrawable(R.drawable.cheddarcheese)
+        }
+        return d1
+    }
+    private fun matchVegetablerawable(value: String?): Drawable{
+        lateinit var d1 : Drawable
+        when(value){
+            "lettuce" -> d1 = resources.getDrawable(R.drawable.lettuce)
+            "onion" -> d1 = resources.getDrawable(R.drawable.onion)
+            "pickle" -> d1 = resources.getDrawable(R.drawable.pickle)
+            "tomato" -> d1 = resources.getDrawable(R.drawable.tomato)
+
+        }
+        return d1
     }
 }
