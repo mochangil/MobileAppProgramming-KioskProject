@@ -26,11 +26,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="60dp"
         android:text="@string/payment_number"
         android:fontFamily="@font/cafe24ssurround"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/payment_amount"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView

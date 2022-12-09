@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -41,9 +42,58 @@ class CashPaymentFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_cash_payment, container, false)
+        var i = 0
+        var money = 7500 // 결제금액 임의로 설정, 19500을 실제 결제 금액 변수로 대체하면 될듯합니다..
+        var restMoney = money
+        var insertMoney = 0
+        val restPrice = v.findViewById<TextView>(R.id.payment_rest_number)
+        val insertPrice = v.findViewById<TextView>(R.id.payment_insert_number)
+
+        insertPrice.text = insertMoney.toString()
+        restPrice.text = restMoney.toString()
 
         coroutineScope.launch {
-            delay(5000)
+            i = money / 10000
+            money %= 10000
+            for (j in 1..i) {
+                delay(1000)
+                insertMoney += 10000
+                restMoney -= 10000
+                insertPrice.text = insertMoney.toString()
+                restPrice.text = restMoney.toString()
+            }
+
+            i = money / 5000
+            money %= 5000
+            for (j in 1..i) {
+                delay(1000)
+                insertMoney += 5000
+                restMoney -= 5000
+                insertPrice.text = insertMoney.toString()
+                restPrice.text = restMoney.toString()
+            }
+
+            i = money / 1000
+            money %= 1000
+            for (j in 1..i) {
+                delay(1000)
+                insertMoney += 1000
+                restMoney -= 1000
+                insertPrice.text = insertMoney.toString()
+                restPrice.text = restMoney.toString()
+            }
+
+            i = money / 500
+            money %= 500
+            for (j in 1..i) {
+                delay(1000)
+                insertMoney += 500
+                restMoney -= 500
+                insertPrice.text = insertMoney.toString()
+                restPrice.text = restMoney.toString()
+            }
+
+            delay(3000)
             if(activity is PaymentActivity) {
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, AfterPaymentFragment())?.commit()
             }
