@@ -2,7 +2,6 @@ package com.example.kiosk
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +35,7 @@ class AfterPaymentFragment : Fragment() {
     private var param2: String? = null
     private lateinit var database: DatabaseReference
     lateinit var v: View
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,10 +55,12 @@ class AfterPaymentFragment : Fragment() {
         database = Firebase.database.reference
         database.addListenerForSingleValueEvent(postListener)
 
-        android.os.Handler(Looper.getMainLooper()).postDelayed({
+        coroutineScope.launch {
+            delay(5000)
             val mainIntent = Intent(activity, OrderPage::class.java)
             startActivity(mainIntent)
-        }, 5000)
+            activity?.finish()
+        }
 
         return v
     }
