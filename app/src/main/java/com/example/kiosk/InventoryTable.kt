@@ -1,5 +1,6 @@
 package com.example.kiosk
 
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -22,11 +23,12 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.text.DecimalFormat
 
+
 class InventoryTable : AppCompatActivity() {
 
     lateinit var database: DatabaseReference
     lateinit var ivMenuBinding : InventoryTableBinding
-    val prod_dataSet = mutableListOf<MutableList<String>>()
+    var prod_dataSet = mutableListOf<MutableList<String>>()
 
     val postListener = object: ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -144,8 +146,14 @@ class InventoryTable : AppCompatActivity() {
                 ivdIntent.putExtra("key", dataSet[position][3])
                 ivdIntent.putExtra("num", dataSet[position][4])
                 ivdIntent.putExtra("price", dataSet[position][5])
+
+                val intent = (context as Activity).intent
+                context.finish() //현재 액티비티 종료 실시
+                context.overridePendingTransition(0, 0) //효과 없애기
+                context.startActivity(intent) //현재 액티비티 재실행 실시
+                context.overridePendingTransition(0, 0) //효과 없애기
+
                 context.startActivity(ivdIntent)
-                dataSet.clear()
             }
         }
         override fun getItemCount(): Int {
@@ -203,13 +211,6 @@ class InventoryTable : AppCompatActivity() {
                 is_cheese = false
                 is_side = false
                 is_drink = false
-
-                // 액티비티 새로 고침
-                finish()
-                overridePendingTransition(0, 0)
-                val intent = intent
-                startActivity(intent)
-                overridePendingTransition(0, 0)
             }
         }
 
