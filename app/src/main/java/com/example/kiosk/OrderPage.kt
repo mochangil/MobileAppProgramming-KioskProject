@@ -64,10 +64,6 @@ public class OrderPage : AppCompatActivity() {
             builder.show()
         }
         OrderListBtn.setVisibility(View.INVISIBLE)
-        OrderListBtn.setBackgroundColor(Color.parseColor("#00ff0000"));
-        OrderListBtn.typeface = resources.getFont(R.font.rixinooariduriregular)
-        OrderListBtn.setTextColor(resources.getColor(R.color.brown_600))
-        // OrderListBtn.textSize = changeDP(30).toFloat()
 
         requestLaunch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
@@ -77,7 +73,7 @@ public class OrderPage : AppCompatActivity() {
                 Log.d("finishJob","yes")
                 drawable = matchDrawable(resultData)
                 newbutton.setBackgroundColor(Color.parseColor("#00ff0000"));
-                newbutton.typeface = resources.getFont(R.font.rixinooariduriregular)
+                newbutton.typeface = resources.getFont(R.font.cafe24ssurround)
                 newbutton.setTextColor(resources.getColor(R.color.brown_600))
                 newbutton.text = resultData
                 newbutton.textSize = changeDP(30).toFloat()
