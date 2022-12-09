@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/meal_location"
@@ -27,7 +27,7 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="30dp"/>
     <RadioGroup
         android:id="@+id/meal_location_radio"
         android:layout_width="wrap_content"
