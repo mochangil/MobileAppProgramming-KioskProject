@@ -69,6 +69,7 @@ public class OrderPage : AppCompatActivity() {
                 newbutton.typeface = resources.getFont(R.font.rixinooariduriregular)
                 newbutton.setTextColor(resources.getColor(R.color.brown_600))
                 newbutton.text = resultData
+                newbutton.textSize = changeDP(30).toFloat()
 
             }
         }
@@ -86,7 +87,7 @@ public class OrderPage : AppCompatActivity() {
                 )
                 btn.layoutParams = layoutParams
                 layoutParams.width = changeDP(150)
-                layoutParams.height = changeDP(20)
+                layoutParams.height = changeDP(30)
                 layoutParams.setMargins(changeDP(6), changeDP(6), changeDP(6), changeDP(6))
 //                when (addmenucount) {
 //                    0 -> btn.id = R.id.addMenu1
@@ -298,10 +299,10 @@ public class OrderPage : AppCompatActivity() {
             binding.addDrinkButtonView.removeAllViews()
             binding.addSideButtonView.removeAllViews()
             binding.addButtonView.removeAllViews()
-            binding.btnMainPatty.background = resources.getDrawable(R.drawable.meatchoice)
-            binding.btnMainCheese.background = resources.getDrawable(R.drawable.cheesechoice)
-            binding.btnMainSauce.background = resources.getDrawable(R.drawable.saucechoice)
-            binding.btnMainVegetable.background = resources.getDrawable(R.drawable.vegechoice)
+            binding.btnMainPatty.text = "패티 고르기"
+            binding.btnMainCheese.text = "치즈 고르기"
+            binding.btnMainSauce.text = "소스 고르기"
+            binding.btnMainVegetable.text = "야채 고르기"
             addmenucount = 0; sidecount = 0; drinkcount= 0
             pattyName=" "; sauceName=" "; cheeseName = " "
             sideName=" ";drinkName = " ";vegetableName=" "
