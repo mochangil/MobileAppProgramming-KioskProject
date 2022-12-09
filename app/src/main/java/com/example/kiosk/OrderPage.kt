@@ -336,6 +336,11 @@ public class OrderPage : AppCompatActivity() {
             sidePrice = 0
             drinkPrice = 0
         }
+
+        binding.completeOrder.setOnClickListener {
+            val pay = Intent(this, PaymentActivity::class.java)
+            startActivity(pay)
+        }
     }
 
 
