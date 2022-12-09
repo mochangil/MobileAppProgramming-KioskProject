@@ -44,6 +44,18 @@
             android:name=".OrderPage"
             android:label="OrderPage"/>
         <activity
+            android:name=".OrderMonthTable"
+            android:label="OrderMonthTable"/>
+        <activity
+            android:name=".OrderDayTable"
+            android:label="OrderDayTable"/>
+        <activity
+            android:name=".OrderLogTable"
+            android:label="OrderLogTable"/>
+        <activity
+            android:name=".OrderLogActivity"
+            android:label="OrderLogActivity"/>
+        <activity
             android:name=".AddMenuDialog"
             android:label="AddMenuDialog"/>
     </application>
