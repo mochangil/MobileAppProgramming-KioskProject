@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="새우"
-            android:fontFamily="@font/rixinooariduriregular"
+            android:fontFamily="@font/cafe24ssurround"
             android:textSize="60dp"
             android:textColor="@color/black"
             android:gravity="center"
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="재료명"
-                    android:fontFamily="@font/rixinooariduriregular"
+                    android:fontFamily="@font/cafe24ssurround"
                     android:textColor="@color/grey_500"
                     android:textSize="25dp"
                     android:gravity="center"/>
@@ -47,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="수량"
-                    android:fontFamily="@font/rixinooariduriregular"
+                    android:fontFamily="@font/cafe24ssurround"
                     android:textColor="@color/grey_500"
                     android:textSize="25dp"
                     android:gravity="center"/>
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="가격"
-                    android:fontFamily="@font/rixinooariduriregular"
+                    android:fontFamily="@font/cafe24ssurround"
                     android:textColor="@color/grey_500"
                     android:textSize="25dp"
                     android:gravity="center"/>
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="총 가격 : "
-                android:fontFamily="@font/rixinooariduriregular"
+                android:fontFamily="@font/cafe24ssurround"
                 android:textColor="@color/grey_500"
                 android:textSize="25dp"/>
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1,000원"
-                android:fontFamily="@font/rixinooariduriregular"
+                android:fontFamily="@font/cafe24ssurround"
                 android:textColor="@color/black"
                 android:textSize="25dp"/>
         </LinearLayout>
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:text="뒤로가기"
             android:background="@drawable/round_button"
-            android:fontFamily="@font/rixinooariduriregular"/>
+            android:fontFamily="@font/cafe24ssurround"/>
 
     </LinearLayout>
 </LinearLayout>

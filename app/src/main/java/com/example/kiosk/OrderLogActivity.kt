@@ -65,7 +65,7 @@ class OrderLogActivity : AppCompatActivity() {
                 newRow.addView(nameText, tableLayoutParams)
                 newRow.addView(numText, tableLayoutParams)
                 newRow.addView(priceText, tableLayoutParams)
-                newRow.setPadding(0, 15, 0, 0)
+                newRow.setPadding(0, 25, 0, 0)
 
                 otb.addView(newRow)
             }
@@ -85,7 +85,7 @@ class OrderLogActivity : AppCompatActivity() {
         setContentView(OLBinding.root)
 
         otb = OLBinding.mainTable
-        usedFont = ResourcesCompat.getFont(this, R.font.rixinooariduriregular)!!
+        usedFont = ResourcesCompat.getFont(this, R.font.cafe24ssurround)!!
 
         var key_str = intent.getStringExtra("key").toString()
         num_key = intent.getStringExtra("num").toString()

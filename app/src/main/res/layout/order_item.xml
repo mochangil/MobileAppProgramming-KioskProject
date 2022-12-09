@@ -19,7 +19,7 @@
             android:textStyle="bold"
             android:textSize="16dp"
             android:layout_gravity="center"
-            android:fontFamily="@font/rixinooariduriregular"
+            android:fontFamily="@font/cafe24ssurround"
             android:textColor="@color/black"/>
 
     </LinearLayout>

@@ -19,7 +19,7 @@
             android:textStyle="bold"
             android:textSize="16dp"
             android:layout_gravity="left"
-            android:fontFamily="@font/rixinooariduriregular"
+            android:fontFamily="@font/cafe24ssurround"
             android:textColor="@color/black"/>
 
         <View
@@ -34,7 +34,7 @@
             android:textStyle="bold"
             android:textSize="16dp"
             android:layout_gravity="right"
-            android:fontFamily="@font/rixinooariduriregular"
+            android:fontFamily="@font/cafe24ssurround"
             android:textColor="@color/black"/>
 
     </LinearLayout>
