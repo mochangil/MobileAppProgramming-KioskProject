@@ -18,7 +18,8 @@ class AdminMenu : AppCompatActivity() {
         }
 
         adminBinding.sold.setOnClickListener {
-
+            val orders = Intent(this, OrderMonthTable::class.java)
+            startActivity(orders)
         }
         adminBinding.adminBackButton.setOnClickListener {
             finish()

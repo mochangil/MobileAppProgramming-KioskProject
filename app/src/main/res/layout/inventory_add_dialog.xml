@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="20dp"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:orientation="vertical">
 
     <RadioGroup
@@ -44,6 +44,26 @@
             android:gravity="center"
             android:fontFamily="@font/rixinooariduriregular"
             android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/sideB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="사이드"
+            android:gravity="center"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/black"/>
+
+        <RadioButton
+            android:id="@+id/drinkB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="음료"
+            android:gravity="center"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/black"/>
     </RadioGroup>
 
     <EditText
@@ -63,6 +83,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="추가할 메뉴의 수량을 입력해주세요."
+        android:height="60dp"
+        android:textSize="18dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:layout_marginBottom="20dp"/>
+
+    <EditText
+        android:id="@+id/num_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="추가할 메뉴의 가격을 입력해주세요."
         android:height="60dp"
         android:textSize="18dp"
         android:inputType="number"

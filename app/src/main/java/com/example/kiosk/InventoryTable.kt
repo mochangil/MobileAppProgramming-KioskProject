@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
 
 class InventoryTable : AppCompatActivity() {
 
@@ -35,9 +36,15 @@ class InventoryTable : AppCompatActivity() {
             for (item in data_patty.children) {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
-                datas.add(product!!.num.toString())
+                var item_num = product.num.toString()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
                 datas.add("patty")
                 datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -46,9 +53,15 @@ class InventoryTable : AppCompatActivity() {
             for (item in data_veg.children) {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
-                datas.add(product!!.num.toString())
+                var item_num = product.num.toString()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
                 datas.add("vegetable")
                 datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -57,9 +70,49 @@ class InventoryTable : AppCompatActivity() {
             for (item in data_cheese.children) {
                 val product = item.getValue(Product::class.java)
                 datas.add(product!!.name)
-                datas.add(product!!.num.toString())
+                var item_num = product.num.toString()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
                 datas.add("cheese")
                 datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
+                prod_dataSet.add(ArrayList(datas))
+                datas.clear()
+            }
+
+            val data_side = snapshot.child("Product").child("side")
+            for (item in data_side.children) {
+                val product = item.getValue(Product::class.java)
+                datas.add(product!!.name)
+                var item_num = product.num.toString()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
+                datas.add("side")
+                datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
+                prod_dataSet.add(ArrayList(datas))
+                datas.clear()
+            }
+
+            val data_drink = snapshot.child("Product").child("drink")
+            for (item in data_drink.children) {
+                val product = item.getValue(Product::class.java)
+                datas.add(product!!.name)
+                var item_num = product.num.toString()
+                val dec = DecimalFormat("#,###")
+                var item_price = dec.format(product.price)
+                var show_str = item_price + "원, " + item_num + "개"
+                datas.add(show_str)
+                datas.add("drink")
+                datas.add(item.key.toString())
+                datas.add(item_num)
+                datas.add(product.price.toString())
                 prod_dataSet.add(ArrayList(datas))
                 datas.clear()
             }
@@ -85,10 +138,12 @@ class InventoryTable : AppCompatActivity() {
             var context : Context = binding.itemRoot.context
 
             binding.itemRoot.setOnClickListener {
-                val ivdIntent = Intent(context, InventoryDialog::class.java)
+                val ivdIntent = Intent(context, InventoryActivity::class.java)
                 ivdIntent.putExtra("name", binding.itemName.text)
                 ivdIntent.putExtra("table", dataSet[position][2])
                 ivdIntent.putExtra("key", dataSet[position][3])
+                ivdIntent.putExtra("num", dataSet[position][4])
+                ivdIntent.putExtra("price", dataSet[position][5])
                 context.startActivity(ivdIntent)
                 dataSet.clear()
             }
@@ -119,13 +174,16 @@ class InventoryTable : AppCompatActivity() {
         var is_patty : Boolean = false
         var is_veg : Boolean = false
         var is_cheese : Boolean = false
+        var is_side : Boolean = false
+        var is_drink : Boolean = false
 
         val eventHandler = object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
-                if (is_patty || is_cheese || is_veg) {
+                if (is_patty || is_cheese || is_veg || is_side || is_drink) {
                     var name : String = addBinding.menu.text.toString()
                     var number : Int = addBinding.num.text.toString().toInt()
-                    var product = Product(name, number)
+                    var price : Int = addBinding.numPrice.text.toString().toInt()
+                    var product = Product(name, number, price)
 
                     if (is_patty) {
                         database.child("Product").child("patty").child(name).setValue(product)
@@ -133,12 +191,18 @@ class InventoryTable : AppCompatActivity() {
                         database.child("Product").child("vegetable").child(name).setValue(product)
                     } else if (is_cheese) {
                         database.child("Product").child("cheese").child(name).setValue(product)
+                    } else if (is_side) {
+                        database.child("Product").child("side").child(name).setValue(product)
+                    } else if (is_drink) {
+                        database.child("Product").child("drink").child(name).setValue(product)
                     }
                 }
 
                 is_patty = false
                 is_veg = false
                 is_cheese = false
+                is_side = false
+                is_drink = false
 
                 // 액티비티 새로 고침
                 finish()
@@ -155,12 +219,14 @@ class InventoryTable : AppCompatActivity() {
             addBinding.addGroup.setOnCheckedChangeListener { group, checkID ->
                 if (checkID == R.id.pattyB) {
                     is_patty = true
-                }
-                else if (checkID == R.id.vegB) {
+                } else if (checkID == R.id.vegB) {
                     is_veg = true
-                }
-                else if (checkID == R.id.cheeseB) {
+                } else if (checkID == R.id.cheeseB) {
                     is_cheese = true
+                } else if (checkID == R.id.sideB) {
+                    is_side = true
+                } else if (checkID == R.id.drinkB) {
+                    is_drink = true
                 }
             }
 

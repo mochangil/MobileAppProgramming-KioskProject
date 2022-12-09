@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.content.Intent
 import com.example.kiosk.databinding.ActivityMainBinding
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 public class MainActivity : AppCompatActivity() {
@@ -30,5 +32,5 @@ public class MainActivity : AppCompatActivity() {
             val adminPassIntent = Intent(this, AdminPassword::class.java)
             startActivity(adminPassIntent)
         }
-    }
+   }
 }

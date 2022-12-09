@@ -2,5 +2,5 @@
     <item
         android:width="250dp"
         android:height="250dp"
-        android:drawable="@drawable/payment" />
+        android:drawable="@drawable/cash_payment" />
 </layer-list>
