@@ -52,7 +52,9 @@
         <activity
             android:name=".OrderLogActivity"
             android:label="OrderLogActivity"/>
-
+        <activity
+            android:name=".AddMenuDialog"
+            android:label="AddMenuDialog"/>
     </application>
 
 </manifest>

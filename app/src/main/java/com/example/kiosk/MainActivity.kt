@@ -13,14 +13,9 @@ import com.google.firebase.ktx.Firebase
 
 public class MainActivity : AppCompatActivity() {
 
-    lateinit var mainPatty: Image
+
     lateinit var binding: ActivityMainBinding
-    lateinit var drawable : Drawable
     lateinit var database: DatabaseReference
-    var pattyName : String = " "
-    var sauceName : String = " "
-    var cheeseName : String = " "
-    var vegetableName : String = " "
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

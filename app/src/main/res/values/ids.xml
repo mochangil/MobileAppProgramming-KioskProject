@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="addMenu1" type="id"/>
+    <item name="addMenu2" type="id"/>
+    <item name="addMenu3" type="id"/>
+    <item name="addSide1" type="id"/>
+    <item name="addSide2" type="id"/>
+    <item name="addSide3" type="id"/>
+    <item name="addDrink1" type="id"/>
+    <item name="addDrink2" type="id"/>
+    <item name="addDrink3" type="id"/>
+</resources>

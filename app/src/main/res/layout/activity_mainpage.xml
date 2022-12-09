@@ -6,49 +6,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/briefMenu"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+
+        >
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/burgerChoice"
+        android:orientation="vertical">
     <ImageView
         android:layout_marginTop="10dp"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
+        android:layout_marginBottom="3dp"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
         android:src = "@drawable/bun_up"
         android:layout_gravity="center_horizontal"
 
         />
     <Button
         android:id="@+id/btn_mainPatty"
-        android:layout_width="140dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/meat_choice"
-
+        android:text="패티 고르기"
+        android:textSize="30dp"
+        android:background="#00ff0000"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/brown_600"
+        android:layout_margin="4dp"
         android:onClick="onClick"
         />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:id="@+id/btn_MainCheese"
+            android:text="치즈 고르기"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:background="#00ff0000"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/yellow_800"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            />
     <Button
         android:id="@+id/btn_mainSauce"
-        android:layout_width="140dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-
-        android:background="@drawable/sauce_choice"
+        android:text="소스 고르기"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:background="#00ff0000"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/red_500"
+        android:layout_margin="4dp"
         android:onClick="onClick"
         />
     <Button
         android:id="@+id/btn_mainVegetable"
-        android:layout_width="140dp"
+        android:layout_width="150dp"
         android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-
-        android:background="@drawable/vege_choice"
+        android:text="야채 고르기"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:background="#00ff0000"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/green_600"
+        android:layout_margin="4dp"
         android:onClick="onClick"
         />
-    <Button
-        android:id="@+id/btn_mainCheese"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
 
-        android:background="@drawable/cheese_choice"
-        android:layout_gravity="center_horizontal"
-        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,21 +93,128 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="30dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:id="@+id/addBtn"
-        android:background="@drawable/add_choice"
-        android:text = " "
-        android:layout_gravity="center_horizontal"
+        android:text="추가하기"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:background="#00ff0000"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/grey_600"
+        android:layout_margin="6dp"
         />
 
-
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="20dp"
+        android:layout_width="400dp"
+        android:layout_height="35dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/bun_down"
         />
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sideMenuLayout"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addSideButtonView"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+
+            >
+        </LinearLayout>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/addSideBtn"
+            android:text="사이드\n추가하기"
+            android:textSize="15dp"
+            android:layout_margin = "10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/blue_grey_400"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/drinkMenuLayout"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addDrinkButtonView"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+
+            >
+        </LinearLayout>
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/addDrinkBtn"
+            android:text="음료\n추가하기"
+            android:textSize="15dp"
+            android:layout_margin = "10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/blue_grey_400"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderCompleteLayout"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        >
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:id="@+id/moreOrder"
+            android:text="더 주문할래요"
+            android:textSize="15dp"
+            android:layout_margin = "20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/brown_600"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/completeOrder"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="다 주문했어요"
+            android:textSize="15dp"
+            android:layout_margin = "20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/rixinooariduriregular"
+            android:textColor="@color/brown_600"
+            android:layout_weight="1"
+        />
+
+    </LinearLayout>
 
 
 </LinearLayout>
