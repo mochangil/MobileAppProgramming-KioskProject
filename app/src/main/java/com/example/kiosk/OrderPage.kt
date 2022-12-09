@@ -1,6 +1,7 @@
 package com.example.kiosk
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -18,6 +19,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet.Constraint
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kiosk.R
 import com.example.kiosk.databinding.ActivityMainpageBinding
@@ -30,8 +32,6 @@ import kotlin.math.roundToInt
 
 
 public class OrderPage : AppCompatActivity() {
-
-
 
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
     lateinit var newbutton : Button
@@ -57,6 +57,17 @@ public class OrderPage : AppCompatActivity() {
 
         var num = 0
 
+        val OrderListBtn = findViewById<Button>(R.id.btn_orderList)
+
+        OrderListBtn.setOnClickListener {
+            val builder = orderListDialog()
+            builder.show()
+        }
+        OrderListBtn.setVisibility(View.INVISIBLE)
+        OrderListBtn.setBackgroundColor(Color.parseColor("#00ff0000"));
+        OrderListBtn.typeface = resources.getFont(R.font.rixinooariduriregular)
+        OrderListBtn.setTextColor(resources.getColor(R.color.brown_600))
+        // OrderListBtn.textSize = changeDP(30).toFloat()
 
         requestLaunch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
@@ -296,6 +307,8 @@ public class OrderPage : AppCompatActivity() {
         }
 
         binding.moreOrder.setOnClickListener{
+            OrderListBtn.setVisibility(View.VISIBLE)
+
             binding.addDrinkButtonView.removeAllViews()
             binding.addSideButtonView.removeAllViews()
             binding.addButtonView.removeAllViews()
@@ -395,5 +408,36 @@ public class OrderPage : AppCompatActivity() {
 
         }
         return d1
+    }
+
+    fun orderListDialog(): AlertDialog.Builder{
+
+        // orderList에 목록 받아오기
+        // 여기 있는 데이터를 다음 과정으로 넘겨주기
+        var orderList = arrayOf("새우버거 세트 (콜라, 감자튀김)", "불고기버거 단품")
+        var checkedItems = arrayListOf<String>()
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("취소할 메뉴를 선택하세요.")
+            .setMultiChoiceItems(orderList, null, object : DialogInterface.OnMultiChoiceClickListener {
+                override fun onClick(dialogInterface: DialogInterface, pos: Int, isChecked: Boolean) {
+                    if(isChecked) {
+                        checkedItems.add(orderList[pos])
+                        // array에서 값 삭제하기
+                    } else if(checkedItems.contains(orderList[pos])) {
+                        checkedItems.remove(orderList[pos])
+                    }
+                }
+            })
+
+            .setPositiveButton("취소하기", object: DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+                    // Toast.makeText(baseContext, "${checkedItems}", Toast.LENGTH_SHORT).show()
+                }
+            })
+
+        builder.create()
+
+        return builder
     }
 }
