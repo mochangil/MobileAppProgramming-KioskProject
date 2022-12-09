@@ -28,6 +28,13 @@ import com.example.kiosk.databinding.DialogPattyBinding
 import com.example.kiosk.databinding.DialogSauceBinding
 import com.example.kiosk.databinding.DialogVegetableBinding
 import com.example.kiosk.databinding.LayoutMenuitemBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
 
@@ -35,6 +42,57 @@ public class OrderPage : AppCompatActivity() {
 
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
     lateinit var newbutton : Button
+    lateinit var database : DatabaseReference
+
+    var cheese_list = mutableListOf<Product>()
+    var drink_list = mutableListOf<Product>()
+    var patty_list = mutableListOf<Product>()
+    var side_list = mutableListOf<Product>()
+    var veg_list = mutableListOf<Product>()
+
+    val postListener = object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val datas = snapshot.child("Product")
+            for (data in datas.children) {
+                var key = data.key.toString()
+
+                var items = snapshot.child("Product").child(key)
+                for (item in items.children) {
+                    var product = item.getValue(Product::class.java)
+                    if (key == "cheese") {
+                        if (product != null) {
+                            cheese_list.add(product)
+                        }
+                    } else if (key == "drink") {
+                        if (product != null) {
+                            drink_list.add(product)
+                        }
+                    } else if (key == "patty") {
+                        if (product != null) {
+                            patty_list.add(product)
+                        }
+                    } else if (key == "side") {
+                        if (product != null) {
+                            side_list.add(product)
+                        }
+                    } else if (key == "vegetable") {
+                        if (product != null) {
+                            veg_list.add(product)
+                        }
+                    }
+                }
+            }
+            // Log.d("List", cheese_list.toString())
+            // Log.d("List", drink_list.toString())
+            // Log.d("List", patty_list.toString())
+            // Log.d("List", side_list.toString())
+            // Log.d("List", veg_list.toString())
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+
+        }
+    }
 
     var addmenucount: Int = 0
     var sidecount: Int = 0
@@ -49,12 +107,13 @@ public class OrderPage : AppCompatActivity() {
     var sidePrice: Int = 0
     var drinkPrice: Int = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainpageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        database = Firebase.database.reference
+        database.addValueEventListener(postListener)
         var num = 0
 
         val OrderListBtn = findViewById<Button>(R.id.btn_orderList)
