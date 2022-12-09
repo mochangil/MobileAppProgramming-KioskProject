@@ -224,8 +224,8 @@ public class OrderPage : AppCompatActivity() {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
                 btn.layoutParams = layoutParams
-                layoutParams.width = changeDP(60)
-                layoutParams.height = changeDP(60)
+                layoutParams.width = changeDP(80)
+                layoutParams.height = changeDP(80)
                 layoutParams.setMargins(changeDP(10), changeDP(10), changeDP(10), changeDP(10))
 
                 dialog.setOnClickListener(object : SideDialog.OnDialogClickListener {
@@ -267,8 +267,8 @@ public class OrderPage : AppCompatActivity() {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
                 btn.layoutParams = layoutParams
-                layoutParams.width = changeDP(60)
-                layoutParams.height = changeDP(60)
+                layoutParams.width = changeDP(80)
+                layoutParams.height = changeDP(80)
                 layoutParams.setMargins(changeDP(10), changeDP(10), changeDP(10), changeDP(10))
                 dialog.setOnClickListener(object : DrinkDialog.OnDialogClickListener {
                     override fun onClicked(name: String) {
