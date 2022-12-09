@@ -40,7 +40,6 @@ class PrePaymentFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_pre_payment, container, false)
         v.findViewById<Button>(R.id.pre_payment_cancel).setOnClickListener {
-            Toast.makeText(activity, "결제 취소하셨습니다", Toast.LENGTH_SHORT).show()
             activity?.finish()
         }
 
