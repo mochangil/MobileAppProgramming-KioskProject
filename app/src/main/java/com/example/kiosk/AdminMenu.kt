@@ -22,6 +22,8 @@ class AdminMenu : AppCompatActivity() {
             startActivity(orders)
         }
         adminBinding.adminBackButton.setOnClickListener {
+            val mainIntent = Intent(this, OrderPage::class.java)
+            startActivity(mainIntent)
             finish()
         }
     }
