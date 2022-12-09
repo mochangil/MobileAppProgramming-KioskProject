@@ -81,7 +81,7 @@ public class AddMenuDialog : AppCompatActivity() {
                     sauceName = name
                     Log.d("dialog",name)
                     when (name) {
-                        "bbq" -> drawable = resources.getDrawable(R.drawable.bbqsauce)
+                        "bbqsauce" -> drawable = resources.getDrawable(R.drawable.bbqsauce)
                         "garlic" -> drawable = resources.getDrawable(R.drawable.garlicsauce)
                         "hotchili" -> drawable = resources.getDrawable(R.drawable.hotchilisauce)
                         "sweetchili" -> drawable = resources.getDrawable(R.drawable.sweetchilisauce)

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:orientation="vertical"
 android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="wrap_content">
 <Button
     android:layout_width="300dp"
     android:layout_height="60dp"
@@ -10,7 +10,7 @@ android:layout_height="match_parent">
     android:background="@drawable/bbqsauceicon"
     android:button ="@null"
     android:layout_margin = "20dp"
-    android:layout_marginLeft="40dp"
+
     />
 <Button
     android:layout_width="300dp"
@@ -19,7 +19,7 @@ android:layout_height="match_parent">
     android:background="@drawable/garlicsauceicon"
     android:button ="@null"
     android:layout_margin = "20dp"
-    android:layout_marginLeft="40dp"
+
     />
 <Button
     android:layout_width="300dp"
@@ -28,7 +28,7 @@ android:layout_height="match_parent">
     android:background="@drawable/hotchilisauceicon"
     android:button ="@null"
     android:layout_margin = "20dp"
-    android:layout_marginLeft="40dp"
+
     />
 <Button
     android:layout_width="300dp"
@@ -37,7 +37,7 @@ android:layout_height="match_parent">
     android:background="@drawable/sweetchilisauceicon"
     android:button ="@null"
     android:layout_margin = "20dp"
-    android:layout_marginLeft="40dp"
+
     />
 <Button
     android:layout_width="300dp"
@@ -46,7 +46,7 @@ android:layout_height="match_parent">
     android:background="@drawable/tartarsauceicon"
     android:button ="@null"
     android:layout_margin = "20dp"
-    android:layout_marginLeft="40dp"
+
     />
 
 </LinearLayout>

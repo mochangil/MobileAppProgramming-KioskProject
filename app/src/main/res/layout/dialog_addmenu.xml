@@ -2,46 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <Button
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:id="@+id/addPatty"
-        android:text = "AddPatty"
+        android:text="          패티 추가하기         "
+        android:textSize="25dp"
         android:layout_margin = "20dp"
         android:layout_marginLeft="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/brown_600"
         />
     <Button
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:id="@+id/addCheese"
-        android:text = "AddCheese"
+        android:text="          치즈 추가하기         "
+        android:textSize="25dp"
         android:layout_margin = "20dp"
         android:layout_marginLeft="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/yellow_800"
         />
     <Button
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:id="@+id/addVegetable"
-        android:text = "AddVegetable"
+        android:text="          야채 추가하기         "
+        android:textSize="25dp"
         android:layout_margin = "20dp"
         android:layout_marginLeft="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/green_800"
         />
     <Button
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:id="@+id/addSauce"
-        android:text = "AddSauce"
+        android:text="          소스 추가하기         "
+        android:textSize="25dp"
         android:layout_margin = "20dp"
         android:layout_marginLeft="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/red_700"
         />
     <Button
-        android:layout_width="300dp"
+        android:layout_width="100dp"
         android:layout_height="60dp"
         android:id="@+id/endSelect"
-        android:text = "AddSauce"
+        android:text="돌아가기"
+        android:textSize="20dp"
         android:layout_margin = "20dp"
         android:layout_marginLeft="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/black"
         />
 
 

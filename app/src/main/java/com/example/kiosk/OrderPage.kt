@@ -2,6 +2,7 @@ package com.example.kiosk
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
@@ -64,7 +65,10 @@ public class OrderPage : AppCompatActivity() {
                 val resultData = it.data?.getStringExtra("result")
                 Log.d("finishJob","yes")
                 drawable = matchDrawable(resultData)
-                newbutton.background = drawable
+                newbutton.setBackgroundColor(Color.parseColor("#00ff0000"));
+                newbutton.typeface = resources.getFont(R.font.rixinooariduriregular)
+                newbutton.setTextColor(resources.getColor(R.color.brown_600))
+                newbutton.text = resultData
 
             }
         }
@@ -83,7 +87,7 @@ public class OrderPage : AppCompatActivity() {
                 btn.layoutParams = layoutParams
                 layoutParams.width = changeDP(150)
                 layoutParams.height = changeDP(20)
-                layoutParams.setMargins(changeDP(5), changeDP(5), changeDP(5), changeDP(5))
+                layoutParams.setMargins(changeDP(6), changeDP(6), changeDP(6), changeDP(6))
 //                when (addmenucount) {
 //                    0 -> btn.id = R.id.addMenu1
 //                    1 -> btn.id = R.id.addMenu2
@@ -122,7 +126,8 @@ public class OrderPage : AppCompatActivity() {
                         "shrimp" -> drawable = resources.getDrawable(R.drawable.shrimp)
                         "steak" -> drawable = resources.getDrawable(R.drawable.steak)
                     }
-                    binding.btnMainPatty.background=drawable
+                    binding.btnMainPatty.text = pattyName
+//                    binding.btnMainPatty.background=drawable
                 }
             })
 
@@ -145,7 +150,8 @@ public class OrderPage : AppCompatActivity() {
                         "sweetchili" -> drawable = resources.getDrawable(R.drawable.sweetchilisauce)
                         "tartar" -> drawable = resources.getDrawable(R.drawable.tartarsauce)
                     }
-                    binding.btnMainSauce.background=drawable
+                    binding.btnMainSauce.text = sauceName
+//                    binding.btnMainSauce.background=drawable
                 }
             })
         }
@@ -163,7 +169,8 @@ public class OrderPage : AppCompatActivity() {
                         "mozza" -> drawable = resources.getDrawable(R.drawable.mozzacheese)
                         "cheddar" -> drawable = resources.getDrawable(R.drawable.cheddarcheese)
                     }
-                    binding.btnMainCheese.background=drawable
+                    binding.btnMainCheese.text = cheeseName
+//                    binding.btnMainCheese.background=drawable
                 }
             })
         }
@@ -194,7 +201,8 @@ public class OrderPage : AppCompatActivity() {
                         }
                     }
 //                    binding.btnMainVegetable.text = vegetableName
-                    binding.btnMainVegetable.background = drawable
+                    binding.btnMainVegetable.text = vegetableName
+//                    binding.btnMainVegetable.background = drawable
                 }
                 //만약 닫기 클릭 후에 변경되기 하려면 setPositiveButton의 두번째 인자로 리스너 등록
                 setPositiveButton("닫기", null)
@@ -217,7 +225,7 @@ public class OrderPage : AppCompatActivity() {
                 btn.layoutParams = layoutParams
                 layoutParams.width = changeDP(60)
                 layoutParams.height = changeDP(60)
-                layoutParams.setMargins(changeDP(10), changeDP(10), changeDP(10), 0)
+                layoutParams.setMargins(changeDP(10), changeDP(10), changeDP(10), changeDP(10))
 
                 dialog.setOnClickListener(object : SideDialog.OnDialogClickListener {
                     override fun onClicked(name: String) {
@@ -260,7 +268,7 @@ public class OrderPage : AppCompatActivity() {
                 btn.layoutParams = layoutParams
                 layoutParams.width = changeDP(60)
                 layoutParams.height = changeDP(60)
-                layoutParams.setMargins(changeDP(10), changeDP(20), changeDP(10), 0)
+                layoutParams.setMargins(changeDP(10), changeDP(10), changeDP(10), changeDP(10))
                 dialog.setOnClickListener(object : DrinkDialog.OnDialogClickListener {
                     override fun onClicked(name: String) {
 
@@ -303,10 +311,10 @@ public class OrderPage : AppCompatActivity() {
             binding.addDrinkButtonView.removeAllViews()
             binding.addSideButtonView.removeAllViews()
             binding.addButtonView.removeAllViews()
-            binding.btnMainPatty.background = resources.getDrawable(R.drawable.meatchoice)
-            binding.btnMainCheese.background = resources.getDrawable(R.drawable.cheesechoice)
-            binding.btnMainSauce.background = resources.getDrawable(R.drawable.saucechoice)
-            binding.btnMainVegetable.background = resources.getDrawable(R.drawable.vegechoice)
+            binding.btnMainPatty.text = "패티 고르기"
+            binding.btnMainCheese.text = "치즈 고르기"
+            binding.btnMainSauce.text = "소스 고르기"
+            binding.btnMainVegetable.text = "야채 고르기"
             addmenucount = 0; sidecount = 0; drinkcount= 0
             pattyName=" "; sauceName=" "; cheeseName = " "
             sideName=" ";drinkName = " ";vegetableName=" "
