@@ -53,7 +53,7 @@ class AfterPaymentFragment : Fragment() {
         database.addListenerForSingleValueEvent(postListener)
 
         android.os.Handler(Looper.getMainLooper()).postDelayed({
-            val mainIntent = Intent(activity, MainActivity::class.java)
+            val mainIntent = Intent(activity, OrderPage::class.java)
             startActivity(mainIntent)
         }, 5000)
 
