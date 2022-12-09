@@ -341,6 +341,11 @@ public class OrderPage : AppCompatActivity() {
             val pay = Intent(this, PaymentActivity::class.java)
             startActivity(pay)
         }
+
+        binding.adminButton.setOnClickListener {
+            val adminPassIntent = Intent(this, AdminPassword::class.java)
+            startActivity(adminPassIntent)
+        }
     }
 
 
