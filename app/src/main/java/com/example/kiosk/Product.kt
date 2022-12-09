@@ -21,7 +21,7 @@ class Product {
     }
 
     override fun toString() : String {
-        val str = "Name : " + this.name + " num : " + this.num.toString()
+        val str = "Name : " + this.name + " num : " + this.num.toString() + " price : " + this.price.toString()
         return str
     }
 }
