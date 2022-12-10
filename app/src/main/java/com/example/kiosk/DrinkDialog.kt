@@ -31,8 +31,11 @@ class DrinkDialog(context: Context){
         var pattyName = " "
         var cider = dialog.findViewById<Button>(R.id.drinkCiderIcon)
         var coke = dialog.findViewById<Button>(R.id.drinkCokeIcon)
+        var end = dialog.findViewById<Button>(R.id.endDrinkSelect)
 
-
+        end.setOnClickListener{
+            dialog.dismiss()
+        }
         cider.setOnClickListener{
             onClickListener.onClicked("cider")
             dialog.dismiss()

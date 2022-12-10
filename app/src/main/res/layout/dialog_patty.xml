@@ -44,5 +44,18 @@
         android:button ="@null"
         android:layout_margin = "20dp"
         />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:id="@+id/endPattySelect"
+        android:text="돌아가기"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/black"
+        />
+
 
 </LinearLayout>
