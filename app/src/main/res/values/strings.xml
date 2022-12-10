@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">kiosk</string>
     <string name="payment_number">원</string>
-    <string name="payment_amount">결제금액</string>
+    <string name="payment_amount">결제 금액</string>
     <string name="line">line</string>
     <string name="payment_image">payment_image</string>
     <string name="payment_text">IC 카드를 투입구에 넣어주세요.</string>

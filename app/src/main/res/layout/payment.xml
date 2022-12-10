@@ -23,11 +23,27 @@
 
     <TextView
         android:id="@+id/payment_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/cafe24ssurround"
+        android:text="0"
+        android:textColor="@color/red_700"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/payment_number_end"
+        app:layout_constraintStart_toEndOf="@id/payment_amount"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingEnd="10dp"
+        android:gravity="end"/>
+
+    <TextView
+        android:id="@+id/payment_number_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="60dp"
         android:text="@string/payment_number"
+        android:textColor="@color/red_700"
         android:fontFamily="@font/cafe24ssurround"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
