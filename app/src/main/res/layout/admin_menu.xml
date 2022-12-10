@@ -28,7 +28,7 @@
             android:id="@+id/sold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="메출 관리"
+            android:text="매출 관리"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/round_button"
