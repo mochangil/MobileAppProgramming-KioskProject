@@ -13,14 +13,14 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/payment_image"
         android:src="@drawable/cash_payment_resize"
-        app:layout_constraintBottom_toTopOf="@+id/payment_insert"
+        app:layout_constraintBottom_toTopOf="@+id/payment_insert_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/payment_insert"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/cafe24ssurround"
@@ -29,7 +29,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/payment_rest"
         app:layout_constraintEnd_toStartOf="@id/payment_insert_number"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="50dp"/>
 
     <TextView
         android:id="@+id/payment_insert_number"
@@ -37,17 +38,33 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/cafe24ssurround"
+        android:gravity="right"
+        android:text="0"
+        android:textColor="@color/red_700"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/payment_rest_number"
+        app:layout_constraintEnd_toStartOf="@id/payment_insert_number_end"
+        app:layout_constraintStart_toEndOf="@id/payment_insert"
+        android:paddingRight="10dp"/>
+
+    <TextView
+        android:id="@+id/payment_insert_number_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/cafe24ssurround"
         android:gravity="center"
         android:text="원"
-        android:textSize="20sp"
         android:textColor="@color/red_700"
-        app:layout_constraintBottom_toTopOf="@+id/payment_rest_number"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/payment_rest_number_end"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/payment_insert" />
+        app:layout_constraintStart_toEndOf="@id/payment_insert_number" />
 
     <TextView
         android:id="@+id/payment_rest"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:fontFamily="@font/cafe24ssurround"
@@ -56,8 +73,8 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/payment_text"
         app:layout_constraintEnd_toStartOf="@id/payment_rest_number"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="50dp"/>
 
     <TextView
         android:id="@+id/payment_rest_number"
@@ -65,13 +82,29 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:fontFamily="@font/cafe24ssurround"
+        android:gravity="right"
+        android:text="0"
+        android:textColor="@color/blue_700"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/payment_text"
+        app:layout_constraintEnd_toStartOf="@id/payment_rest_number_end"
+        app:layout_constraintStart_toEndOf="@id/payment_rest"
+        android:paddingRight="10dp"/>
+
+    <TextView
+        android:id="@+id/payment_rest_number_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="@font/cafe24ssurround"
         android:gravity="center"
         android:text="원"
         android:textColor="@color/blue_700"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/payment_text"
+        app:layout_constraintBottom_toTopOf="@id/payment_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/payment_rest" />
+        app:layout_constraintStart_toEndOf="@id/payment_rest_number" />
 
     <TextView
         android:id="@+id/payment_text"
@@ -82,7 +115,7 @@
         android:gravity="center"
         android:text="현금을 투입구에 넣어주세요."
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/payment_warning"
+        app:layout_constraintBottom_toTopOf="@id/payment_warning"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -95,7 +128,7 @@
         android:gravity="center"
         android:text="@string/payment_warning"
         android:textColor="@color/red_700"
-        app:layout_constraintBottom_toTopOf="@+id/payment_cancel"
+        app:layout_constraintBottom_toTopOf="@id/payment_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
