@@ -421,7 +421,7 @@ public class OrderPage : AppCompatActivity() {
         return dp
     }
     private fun matchColor(value: String?): Int{
-        var d2 : Int = 0
+        var d2 : Int = R.color.green_600
         when(value){
             "불고기" -> d2 = R.color.brown_600
             "새우" -> d2 = R.color.brown_600
@@ -435,10 +435,6 @@ public class OrderPage : AppCompatActivity() {
             "타르타르소스" -> d2 = R.color.red_500
             "모짜렐라치즈" -> d2 = R.color.yellow_800
             "체다치즈" -> d2 = R.color.yellow_800
-            "양상추" -> d2 = R.color.green_600
-            "양파" -> d2 = R.color.green_600
-            "피클" -> d2 = R.color.green_600
-            "토마토" -> d2 = R.color.green_600
         }
         return d2
     }
