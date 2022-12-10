@@ -20,6 +20,19 @@ android:layout_height="wrap_content">
     android:button ="@null"
     android:layout_margin = "20dp"
     />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:id="@+id/endCheeseSelect"
+        android:text="돌아가기"
+        android:textSize="20dp"
+        android:layout_margin = "20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/black"
+        />
 
 
 </LinearLayout>

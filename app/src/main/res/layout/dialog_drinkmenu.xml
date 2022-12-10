@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
     <Button
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/drinkCokeIcon"
         android:background="@drawable/coke"
         android:button ="@null"
-        android:layout_margin = "20dp"
+        android:layout_marginLeft = "90dp"
+        android:layout_marginTop = "20dp"
+        android:layout_marginRight="15dp"
 
         />
+
+        <Button
+            android:id="@+id/drinkCiderIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/cider"
+            android:layout_marginTop = "20dp"
+            android:button="@null" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
     <Button
         android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/drinkCiderIcon"
-        android:background="@drawable/cider"
-        android:button ="@null"
-        android:layout_margin = "20dp"
+        android:layout_height="60dp"
+        android:id="@+id/endDrinkSelect"
+        android:text="돌아가기"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/rixinooariduriregular"
+        android:textColor="@color/black"
         />
+    </LinearLayout>
 </LinearLayout>

@@ -32,7 +32,11 @@ class SideDialog(context: Context){
         var frenchfries = dialog.findViewById<Button>(R.id.sideFrenchfriesIcon)
         var cheesefries = dialog.findViewById<Button>(R.id.sideCheesefriesIcon)
         var chickenfries = dialog.findViewById<Button>(R.id.sideChickenfriesIcon)
+        var end = dialog.findViewById<Button>(R.id.endSideSelect)
 
+        end.setOnClickListener{
+            dialog.dismiss()
+        }
         frenchfries.setOnClickListener{
             onClickListener.onClicked("frenchfries")
             dialog.dismiss()
