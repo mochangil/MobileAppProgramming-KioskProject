@@ -104,9 +104,6 @@ public class OrderPage : AppCompatActivity() {
     var sideName: String = " "
     var drinkName: String = " "
     var vegetableName: String = " "
-    var burgerPrice: Int = 0
-    var sidePrice: Int = 0
-    var drinkPrice: Int = 0
 
     var pattyOutOfAmountList = ArrayList<String>()
     var sideOutOfAmountList = ArrayList<String>()
@@ -115,6 +112,24 @@ public class OrderPage : AppCompatActivity() {
     var vegetableOutOfAmountList = ArrayList<String>()
 
     lateinit var tempButton: Button
+
+
+    //Order에 저장될 product들
+    var mainPatty = Product("불고기",1)
+    var mainCheese = Product("체다치즈",1)
+    var mainSauce = Product("바비큐소스",1)
+    var mainVegetable = ArrayList<Product>()
+    var numberOfSides = arrayListOf<Int>(0,0,0)
+    var numberOfDrinks = arrayListOf<Int>(0,0)
+
+    var sideMenus = arrayListOf<String>("감자튀김","치즈튀김","치킨튀김")
+    var drinkMenus = arrayListOf<String>("콜라","사이다")
+
+    var productList = ArrayList<Product>()
+
+    //하나의 order
+    var order = Order()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -172,11 +187,12 @@ public class OrderPage : AppCompatActivity() {
         OrderListBtn.setTextColor(resources.getColor(R.color.brown_600))
         // OrderListBtn.textSize = changeDP(30).toFloat()
 
+
+        //add Button activity 데이터 수신
         requestLaunch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
             if(it.resultCode == RESULT_OK){
                 val resultData = it.data?.getStringExtra("result")
-//                Log.d("finishJob","yes")
                 var btn = Button(this)
                 val layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
@@ -197,9 +213,10 @@ public class OrderPage : AppCompatActivity() {
                 newbutton.setTextColor(resources.getColor(matchColor(resultData)))
                 newbutton.text = resultData
                 newbutton.textSize = changeDP(11).toFloat()
-
             }
         }
+
+        //add button listener
         binding.addBtn.setOnClickListener {
             if(addmenucount <= 2) {
                 val addOrderIntent = Intent(this, AddMenuDialog::class.java)
@@ -211,17 +228,19 @@ public class OrderPage : AppCompatActivity() {
 
         }
 
-        binding.btnMainPatty.setOnClickListener{
-            val bundle = Bundle()
-            bundle.putStringArrayList("pattyAmount",pattyOutOfAmountList)
+//        //이미지 수정
+//        binding.btnMainPatty.setOnClickListener{
+//            val bundle = Bundle()
+//            bundle.putStringArrayList("pattyAmount",pattyOutOfAmountList)
+//
+//            val pattyFragmentDialog = PattyFragmentDialog()
+//            pattyFragmentDialog.arguments=bundle
+//
+//            val transaction = supportFragmentManager.beginTransaction()
+//            transaction.commit()
+//        }
 
-            val pattyFragmentDialog = PattyFragmentDialog()
-            pattyFragmentDialog.arguments=bundle
-
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.commit()
-        }
-
+        //main patty listener
         binding.btnMainPatty.setOnClickListener {
             val dialog = PattyDialog(this)
             dialog.onDialog()
@@ -232,7 +251,9 @@ public class OrderPage : AppCompatActivity() {
                     Log.d("dialog",name)
                     pattyName = name
                     binding.btnMainPatty.text = pattyName
-//                    binding.btnMainPatty.background=drawable
+                    mainPatty.name = pattyName
+                    mainPatty.price = 2500
+
                 }
             })
 
@@ -247,7 +268,8 @@ public class OrderPage : AppCompatActivity() {
                 override fun onClicked(name: String) {
                     sauceName = name
                     binding.btnMainSauce.text = sauceName
-//                    binding.btnMainSauce.background=drawable
+                    mainSauce.name = sauceName
+                    mainSauce.price = 0
                 }
             })
         }
@@ -260,6 +282,8 @@ public class OrderPage : AppCompatActivity() {
                 override fun onClicked(name: String) {
                     cheeseName = name
                     binding.btnMainCheese.text = cheeseName
+                    mainCheese.name = cheeseName
+                    mainCheese.price = 500
                 }
             })
         }
@@ -277,7 +301,9 @@ public class OrderPage : AppCompatActivity() {
             dialog.setOnClickListener(object : VegetableDialog.OnDialogClickListener {
                 override fun onClicked(list: ArrayList<String>) {
                     selectedVegetable = list
+                    var i = 0
                     for(veges in selectedVegetable){
+                        mainVegetable.add(Product(veges,1))
                         vegetableName += veges+" "
                     }
                     Log.d("vegetableSelect", vegetableName)
@@ -290,6 +316,9 @@ public class OrderPage : AppCompatActivity() {
             if (sidecount <= 2) {
                 val dialog = SideDialog(this)
                 lateinit var sideimg: Drawable
+
+                //side 선택 종류 및 개수 파악
+
                 dialog.onDialog()
 
                 var newStyle = ContextThemeWrapper(this, R.style.Button_Border)
@@ -309,22 +338,42 @@ public class OrderPage : AppCompatActivity() {
                         sideName = name
                         Log.d("dialog", name)
                         when (name) {
-                            "frenchfries" -> sideimg =
-                                resources.getDrawable(R.drawable.frenchfries)
-                            "cheesefries" -> sideimg =
+                            "frenchfries"  -> {
+                                sideimg =
+                                    resources.getDrawable(R.drawable.frenchfries)
+                                numberOfSides[0]++
+
+                            }
+                            "cheesefries" -> {
+                            sideimg =
                                 resources.getDrawable(R.drawable.cheesefries)
-                            "chickenfries" -> sideimg =
-                                resources.getDrawable(R.drawable.chickenfries)
+                                numberOfSides[1]++
+
+                        }
+                            "chickenfries" -> {
+                                sideimg =
+                                    resources.getDrawable(R.drawable.chickenfries)
+                                numberOfSides[2]++
+
+                            }
+
                         }
 
                         binding.addSideButtonView.addView(btn)
+
                         sidecount++
                         newbutton = btn
                         newbutton.background = sideimg
                         newbutton.setOnClickListener{
                             binding.addSideButtonView.removeView(btn)
                             sidecount--
+                            when (btn.id){
+                                R.id.sideFrenchfriesIcon -> numberOfSides[0]--
+                                R.id.sideCheesefriesIcon -> numberOfSides[1]--
+                                R.id.sideChickenfriesIcon -> numberOfSides[2]--
+                            }
                         }
+
                     }
                 })
             }
@@ -351,10 +400,18 @@ public class OrderPage : AppCompatActivity() {
                         drinkName = name
                         Log.d("dialog", name)
                         when (name) {
-                            "cider" -> drinkimg =
-                                resources.getDrawable(R.drawable.cider)
-                            "coke" -> drinkimg =
-                                resources.getDrawable(R.drawable.coke)
+                            "cider" -> {
+                                drinkimg =
+                                    resources.getDrawable(R.drawable.cider)
+                                numberOfDrinks[0]++
+
+                            }
+                            "coke" -> {
+                                drinkimg =
+                                    resources.getDrawable(R.drawable.coke)
+                                numberOfDrinks[1]++
+
+                            }
                         }
 
                         binding.addDrinkButtonView.addView(btn)
@@ -364,6 +421,10 @@ public class OrderPage : AppCompatActivity() {
                         newbutton.setOnClickListener{
                             binding.addDrinkButtonView.removeView(btn)
                             drinkcount--
+                            when (btn.id){
+                                R.id.drinkCiderIcon -> numberOfDrinks[0]--
+                                R.id.drinkCokeIcon -> numberOfDrinks[1]--
+                            }
                         }
                     }
                 })
@@ -372,6 +433,31 @@ public class OrderPage : AppCompatActivity() {
 
         binding.moreOrder.setOnClickListener{
             OrderListBtn.setVisibility(View.VISIBLE)
+            productList.add(mainPatty)
+            productList.add(mainCheese)
+            productList.add(mainSauce)
+            for (p in mainVegetable)
+                productList.add(p)
+            for (i in 0..2) {
+                if (numberOfSides[i] != 0)
+                    productList.add(Product(sideMenus[i], numberOfSides[i]))
+
+                if (i<=1 && numberOfDrinks[i] != 0)
+                    productList.add(Product(drinkMenus[i],numberOfDrinks[i]))
+            }
+            for(a in productList)
+                Log.d("productList",a.name+a.num)
+
+            productList.clear()
+            for (i in 0..2){
+                numberOfSides[i] = 0
+                if(i<=1)
+                    numberOfDrinks[i] = 0
+            }
+
+            //price 계산
+            //order.price =
+
 
             binding.addDrinkButtonView.removeAllViews()
             binding.addSideButtonView.removeAllViews()
@@ -384,21 +470,6 @@ public class OrderPage : AppCompatActivity() {
             pattyName=" "; sauceName=" "; cheeseName = " "
             sideName=" ";drinkName = " ";vegetableName=" "
 
-        }
-        binding.completeOrder.setOnClickListener{
-            binding.addDrinkButtonView.removeAllViews()
-            binding.addSideButtonView.removeAllViews()
-            binding.addButtonView.removeAllViews()
-            binding.btnMainPatty.text = "패티 고르기"
-            binding.btnMainCheese.text = "치즈 고르기"
-            binding.btnMainSauce.text = "소스 고르기"
-            binding.btnMainVegetable.text = "야채 고르기"
-            addmenucount = 0; sidecount = 0; drinkcount= 0
-            pattyName=" "; sauceName=" "; cheeseName = " "
-            sideName=" ";drinkName = " ";vegetableName=" "
-            burgerPrice = 0
-            sidePrice = 0
-            drinkPrice = 0
         }
 
         binding.completeOrder.setOnClickListener {
