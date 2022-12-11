@@ -119,16 +119,23 @@ public class OrderPage : AppCompatActivity() {
     var mainCheese = Product("체다치즈",1)
     var mainSauce = Product("바비큐소스",1)
     var mainVegetable = ArrayList<Product>()
+    var addMenuList = ArrayList<Product>()
+
     var numberOfSides = arrayListOf<Int>(0,0,0)
     var numberOfDrinks = arrayListOf<Int>(0,0)
 
-    var sideMenus = arrayListOf<String>("감자튀김","치즈튀김","치킨튀김")
-    var drinkMenus = arrayListOf<String>("콜라","사이다")
+    var sideNames = arrayListOf<String>("감자튀김","치즈튀김","치킨튀김")
+    var drinkNames = arrayListOf<String>("사이다","콜라")
 
-    var productList = ArrayList<Product>()
+    //주문내역 확인시 메인 버거메뉴, 추가메뉴, 사이드, 음료 각각 구분
+    var burgerMenus = arrayListOf<Product>()
+    var addMenus = arrayListOf<Product>()
+    var sideMenus = arrayListOf<Product>()
+    var drinkMenus = arrayListOf<Product>()
 
-    //하나의 order
+    var productList = arrayListOf<Product>() //전체 메뉴 + 사이드
     var order = Order()
+    var total = 0 //총가격
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -192,6 +199,7 @@ public class OrderPage : AppCompatActivity() {
         requestLaunch = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()){
             if(it.resultCode == RESULT_OK){
+
                 val resultData = it.data?.getStringExtra("result")
                 var btn = Button(this)
                 val layoutParams = LinearLayout.LayoutParams(
@@ -204,15 +212,21 @@ public class OrderPage : AppCompatActivity() {
                 binding.addButtonView.addView(btn)
                 addmenucount++
                 newbutton = btn
-                newbutton.setOnClickListener{
-                    binding.addButtonView.removeView(btn)
-                    addmenucount--
-                }
                 newbutton.setBackgroundColor(Color.parseColor("#00ff0000"));
                 newbutton.typeface = resources.getFont(R.font.rixinooariduriregular)
                 newbutton.setTextColor(resources.getColor(matchColor(resultData)))
                 newbutton.text = resultData
                 newbutton.textSize = changeDP(11).toFloat()
+
+                var product = Product(resultData!!,1)
+                addMenuList.add(product)
+
+                newbutton.setOnClickListener{
+                    binding.addButtonView.removeView(btn)
+                    addMenuList.remove(product)
+                    addmenucount--
+                }
+
             }
         }
 
@@ -252,7 +266,7 @@ public class OrderPage : AppCompatActivity() {
                     pattyName = name
                     binding.btnMainPatty.text = pattyName
                     mainPatty.name = pattyName
-                    mainPatty.price = 2500
+                    mainPatty.price = getPrice("patty",pattyName)
 
                 }
             })
@@ -269,7 +283,7 @@ public class OrderPage : AppCompatActivity() {
                     sauceName = name
                     binding.btnMainSauce.text = sauceName
                     mainSauce.name = sauceName
-                    mainSauce.price = 0
+                    mainSauce.price = getPrice("sauce",sauceName)
                 }
             })
         }
@@ -283,7 +297,7 @@ public class OrderPage : AppCompatActivity() {
                     cheeseName = name
                     binding.btnMainCheese.text = cheeseName
                     mainCheese.name = cheeseName
-                    mainCheese.price = 500
+                    mainCheese.price = getPrice("cheese",cheeseName)
                 }
             })
         }
@@ -303,7 +317,7 @@ public class OrderPage : AppCompatActivity() {
                     selectedVegetable = list
                     var i = 0
                     for(veges in selectedVegetable){
-                        mainVegetable.add(Product(veges,1))
+                        mainVegetable.add(Product(veges,1,getPrice("vegetable",veges)))
                         vegetableName += veges+" "
                     }
                     Log.d("vegetableSelect", vegetableName)
@@ -433,32 +447,72 @@ public class OrderPage : AppCompatActivity() {
 
         binding.moreOrder.setOnClickListener{
             OrderListBtn.setVisibility(View.VISIBLE)
-            productList.add(mainPatty)
-            productList.add(mainCheese)
-            productList.add(mainSauce)
+
+            var total = 0
+
+            //현재까지 주문정보 저장 -> productList
+
+
+            burgerMenus.add(mainPatty)
+            burgerMenus.add(mainCheese)
+            burgerMenus.add(mainSauce)
             for (p in mainVegetable)
-                productList.add(p)
+                burgerMenus.add(p)
+            for (p in addMenuList)
+                addMenus.add(p)
+
+            //side 정보
             for (i in 0..2) {
                 if (numberOfSides[i] != 0)
-                    productList.add(Product(sideMenus[i], numberOfSides[i]))
+                    sideMenus.add(Product(sideNames[i], numberOfSides[i],getPrice("side",sideNames[i])))
 
                 if (i<=1 && numberOfDrinks[i] != 0)
-                    productList.add(Product(drinkMenus[i],numberOfDrinks[i]))
+                    drinkMenus.add(Product(drinkNames[i], numberOfDrinks[i],getPrice("drink",drinkNames[i])))
             }
-            for(a in productList)
-                Log.d("productList",a.name+a.num)
 
+            //상품 리스트, 총가격 저장
+            for (p in burgerMenus) {
+                productList.add(p)
+                total += p.price * p.num
+            }
+            for (p in addMenus) {
+                productList.add(p)
+                total += p.price * p.num
+            }
+            for (p in sideMenus) {
+                productList.add(p)
+                total += p.price * p.num
+            }
+            for (p in drinkMenus) {
+                productList.add(p)
+                total += p.price * p.num
+            }
+
+//            for(a in productList)
+//                Log.d("productList",a.name+a.num)
+
+            //order에 데이터 추가
+            order.lists.addAll(productList)
+            order.price = total
+
+            //주문정보 초기화
             productList.clear()
             for (i in 0..2){
                 numberOfSides[i] = 0
                 if(i<=1)
                     numberOfDrinks[i] = 0
             }
+            mainVegetable.clear()
+            burgerMenus.clear()
+            sideMenus.clear()
+            drinkMenus.clear()
 
-            //price 계산
-            //order.price =
+            for(a in order.lists)
+                Log.d("productList",a.name+a.num)
 
 
+
+            //view 초기화
             binding.addDrinkButtonView.removeAllViews()
             binding.addSideButtonView.removeAllViews()
             binding.addButtonView.removeAllViews()
@@ -511,6 +565,7 @@ public class OrderPage : AppCompatActivity() {
     }
 
 
+
     fun orderListDialog(): AlertDialog.Builder{
 
         // orderList에 목록 받아오기
@@ -542,6 +597,23 @@ public class OrderPage : AppCompatActivity() {
         return builder
     }
 
+    fun getPrice(type : String, name : String): Int {
+        var lists = mutableListOf<Product>()
+        when (type) {
+            "patty" -> lists = patty_list
+            "sauce" -> return 0
+            "vegetable" -> return 0
+            "cheese" -> lists = cheese_list
+            "side" -> lists = side_list
+            "drink" -> lists = drink_list
+        }
+        for(p in lists){
+            if(p.name == name){
+                return p.price
+            }
+        }
+        return 0
+    }
 
 
 }
