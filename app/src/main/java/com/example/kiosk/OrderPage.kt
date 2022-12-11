@@ -510,6 +510,13 @@ public class OrderPage : AppCompatActivity() {
             for(a in order.lists)
                 Log.d("productList",a.name+a.num)
 
+            //전체 order 관리하는 리스트 추가 필요
+
+
+
+            //order clear
+            order.lists.clear()
+            order.price = 0
 
 
             //view 초기화
