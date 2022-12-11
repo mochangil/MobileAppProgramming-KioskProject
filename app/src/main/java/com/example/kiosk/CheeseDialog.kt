@@ -13,6 +13,7 @@ import com.example.kiosk.databinding.ActivityMainpageBinding
 import com.example.kiosk.databinding.DialogPattyBinding
 
 
+
 class CheeseDialog(context: Context){
 
     private val dialog = Dialog(context)
@@ -27,17 +28,20 @@ class CheeseDialog(context: Context){
         dialog.setCancelable(true)
         dialog.show()
 
-        lateinit var drawable : Drawable
-        var pattyName = " "
+
         var mozza = dialog.findViewById<Button>(R.id.mozzaCheeseIcon)
         var cheddar = dialog.findViewById<Button>(R.id.cheddarCheeseIcon)
+        var end = dialog.findViewById<Button>(R.id.endCheeseSelect)
 
         mozza.setOnClickListener{
-            onClickListener.onClicked("mozza")
+            onClickListener.onClicked("모짜렐라치즈")
             dialog.dismiss()
         }
         cheddar.setOnClickListener{
-            onClickListener.onClicked("cheddar")
+            onClickListener.onClicked("체다치즈")
+            dialog.dismiss()
+        }
+        end.setOnClickListener{
             dialog.dismiss()
         }
 

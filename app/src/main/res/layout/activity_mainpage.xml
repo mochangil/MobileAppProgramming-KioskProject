@@ -57,7 +57,7 @@
         />
     <Button
         android:id="@+id/btn_mainPatty"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
         android:text="패티 고르기"
@@ -69,7 +69,7 @@
         android:onClick="onClick"
         />
         <Button
-            android:layout_width="150dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
             android:id="@+id/btn_MainCheese"
             android:text="치즈 고르기"
@@ -83,7 +83,7 @@
             />
     <Button
         android:id="@+id/btn_mainSauce"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="30dp"
         android:text="소스 고르기"
         android:textSize="30dp"
@@ -96,7 +96,7 @@
         />
     <Button
         android:id="@+id/btn_mainVegetable"
-        android:layout_width="150dp"
+        android:layout_width="300dp"
         android:layout_height="30dp"
         android:text="야채 고르기"
         android:textSize="30dp"
@@ -119,8 +119,8 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
         android:id="@+id/addBtn"
         android:text="추가하기"
         android:textSize="20dp"
@@ -128,7 +128,7 @@
         android:background="#00ff0000"
         android:fontFamily="@font/rixinooariduriregular"
         android:textColor="@color/grey_600"
-        android:layout_margin="6dp"
+        android:layout_margin="4dp"
         />
 
     <ImageView

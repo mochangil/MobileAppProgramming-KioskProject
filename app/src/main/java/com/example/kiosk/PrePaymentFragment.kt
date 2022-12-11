@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 
@@ -39,7 +40,6 @@ class PrePaymentFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_pre_payment, container, false)
         v.findViewById<Button>(R.id.pre_payment_cancel).setOnClickListener {
-            Toast.makeText(activity, "결제 취소하셨습니다", Toast.LENGTH_SHORT).show()
             activity?.finish()
         }
 
@@ -47,14 +47,37 @@ class PrePaymentFragment : Fragment() {
         val rg1 = v.findViewById<RadioGroup>(R.id.meal_location_radio)
         val rg2 = v.findViewById<RadioGroup>(R.id.payment_method_radio)
 
-        rg1.setOnCheckedChangeListener { _, _ ->
+        rg1.setOnCheckedChangeListener { _, checkedId ->
             if(rg2.checkedRadioButtonId != -1) {
                 confirmButton.isEnabled = true
             }
+            if(checkedId == R.id.eat_in) {
+                v.findViewById<RadioButton>(R.id.eat_in).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.in_eat_check_resize, 0, 0)
+                v.findViewById<RadioButton>(R.id.eat_out).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.out_eat_resize, 0, 0)
+            } else {
+                v.findViewById<RadioButton>(R.id.eat_in).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.in_eat_resize, 0, 0)
+                v.findViewById<RadioButton>(R.id.eat_out).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.out_eat_check_resize, 0, 0)
+            }
         }
-        rg2.setOnCheckedChangeListener { _, _ ->
+
+        rg2.setOnCheckedChangeListener { _, checkedId ->
             if(rg1.checkedRadioButtonId != -1) {
                 confirmButton.isEnabled = true
+            }
+            if(checkedId == R.id.cash) {
+                v.findViewById<RadioButton>(R.id.cash).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.cash_check_resize, 0, 0)
+                v.findViewById<RadioButton>(R.id.card).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.card_resize, 0, 0)
+            } else {
+                v.findViewById<RadioButton>(R.id.cash).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.cash_resize, 0, 0)
+                v.findViewById<RadioButton>(R.id.card).setCompoundDrawablesWithIntrinsicBounds(
+                    0, R.drawable.card_check_resize, 0, 0)
             }
         }
 

@@ -27,32 +27,34 @@ class PattyDialog(context: Context){
         dialog.setCancelable(true)
         dialog.show()
 
-        lateinit var drawable : Drawable
-        var pattyName = " "
         var bbq = dialog.findViewById<Button>(R.id.pattyBbqIcon)
         var chicken = dialog.findViewById<Button>(R.id.pattyChickenIcon)
         var egg = dialog.findViewById<Button>(R.id.pattyEggIcon)
         var steak = dialog.findViewById<Button>(R.id.pattySteakIcon)
         var shrimp = dialog.findViewById<Button>(R.id.pattyShrimpIcon)
+        var end = dialog.findViewById<Button>(R.id.endPattySelect)
 
+        end.setOnClickListener{
+            dialog.dismiss()
+        }
         bbq.setOnClickListener{
-            onClickListener.onClicked("bbq")
+            onClickListener.onClicked("불고기")
             dialog.dismiss()
         }
         chicken.setOnClickListener{
-            onClickListener.onClicked("chicken")
+            onClickListener.onClicked("치킨")
             dialog.dismiss()
         }
         egg.setOnClickListener{
-            onClickListener.onClicked("egg")
+            onClickListener.onClicked("달걀샐러드")
             dialog.dismiss()
         }
         shrimp.setOnClickListener{
-            onClickListener.onClicked("shrimp")
+            onClickListener.onClicked("새우")
             dialog.dismiss()
         }
         steak.setOnClickListener{
-            onClickListener.onClicked("steak")
+            onClickListener.onClicked("스테이크")
             dialog.dismiss()
         }
 

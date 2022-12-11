@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -67,6 +68,7 @@ class CardPaymentFragment : Fragment() {
         }
 
         v.findViewById<Button>(R.id.payment_cancel).setOnClickListener {
+            Toast.makeText(activity, "결제 취소하셨습니다.", Toast.LENGTH_SHORT).show()
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, PrePaymentFragment())?.commit()
         }
         return v

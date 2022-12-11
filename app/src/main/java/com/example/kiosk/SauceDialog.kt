@@ -34,25 +34,29 @@ class SauceDialog(context: Context){
         var hotchili = dialog.findViewById<Button>(R.id.sauceHotChiliIcon)
         var sweetchili = dialog.findViewById<Button>(R.id.sauceSweetChiliIcon)
         var tartar = dialog.findViewById<Button>(R.id.sauceTartarIcon)
+        var end = dialog.findViewById<Button>(R.id.endSauceSelect)
 
+        end.setOnClickListener{
+            dialog.dismiss()
+        }
         bbq.setOnClickListener{
-            onClickListener.onClicked("bbq")
+            onClickListener.onClicked("바비큐소스")
             dialog.dismiss()
         }
         garlic.setOnClickListener{
-            onClickListener.onClicked("bbq")
+            onClickListener.onClicked("마늘소스")
             dialog.dismiss()
         }
         hotchili.setOnClickListener{
-            onClickListener.onClicked("hotchili")
+            onClickListener.onClicked("매운 칠리소스")
             dialog.dismiss()
         }
         sweetchili.setOnClickListener{
-            onClickListener.onClicked("sweetchili")
+            onClickListener.onClicked("달콤함 칠리소스")
             dialog.dismiss()
         }
         tartar.setOnClickListener{
-            onClickListener.onClicked("tartar")
+            onClickListener.onClicked("타르타르 소스")
             dialog.dismiss()
         }
 
