@@ -1,12 +1,12 @@
 package com.example.kiosk
 
 class Order {
-    var lists = listOf<Product>()
+    var lists = mutableListOf<Product>()
     var price : Int = 0
 
     constructor()
 
-    constructor(lists : List<Product>, price : Int) {
+    constructor(lists : MutableList<Product>, price : Int) {
         this.lists = lists
         this.price = price
     }

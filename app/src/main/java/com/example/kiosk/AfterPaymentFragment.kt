@@ -80,7 +80,7 @@ class AfterPaymentFragment : Fragment() {
             var dummy_prod_1 = Product("새우", 2, 7000)
             var dummy_prod_2 = Product("체다 치즈", 2, 2000)
             var dummy_prod_3 = Product("토마토", 2, 2000)
-            var dummy_prod_list = listOf<Product>(dummy_prod_1, dummy_prod_2, dummy_prod_3)
+            var dummy_prod_list = mutableListOf<Product>(dummy_prod_1, dummy_prod_2, dummy_prod_3)
             var dummy_order = Order(dummy_prod_list, 12000)
 
             database.child("Order").child(year_month).child(day).child(orderNumber.toString()).setValue(dummy_order)
