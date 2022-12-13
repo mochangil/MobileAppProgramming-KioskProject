@@ -7,19 +7,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <Button
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:id="@+id/sideFrenchfriesIcon"
         android:background="@drawable/frenchfries"
         android:button ="@null"
-        android:layout_marginLeft = "20dp"
         android:layout_gravity="center"
         android:layout_weight="1"
 
         />
     <Button
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:id="@+id/sideCheesefriesIcon"
         android:background="@drawable/cheesefries"
         android:button ="@null"
@@ -28,12 +27,11 @@
 
         />
     <Button
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:id="@+id/sideChickenfriesIcon"
         android:background="@drawable/chickenfries"
         android:button ="@null"
-        android:layout_marginRight = "20dp"
         android:layout_gravity="center"
         android:layout_weight="1"
 
@@ -52,6 +50,7 @@
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/round_button"
             android:fontFamily="@font/cafe24ssurround"
             android:textColor="@color/black"

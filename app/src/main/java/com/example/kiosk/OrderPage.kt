@@ -201,8 +201,8 @@ public class OrderPage : AppCompatActivity() {
             builder.show()
         }
         OrderListBtn.setVisibility(View.INVISIBLE)
-        OrderListBtn.setBackgroundColor(Color.parseColor("#00ff0000"));
-        OrderListBtn.setTextColor(resources.getColor(R.color.brown_600))
+        // OrderListBtn.setBackgroundColor(Color.parseColor("#00ff0000"));
+        OrderListBtn.setTextColor(resources.getColor(R.color.brown_900))
 
         //add Button activity 데이터 수신
         requestLaunch = registerForActivityResult(
@@ -646,6 +646,12 @@ public class OrderPage : AppCompatActivity() {
                             count--
                         }
                     }
+                }
+            })
+
+            .setNegativeButton("돌아가기", object: DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+
                 }
             })
 
