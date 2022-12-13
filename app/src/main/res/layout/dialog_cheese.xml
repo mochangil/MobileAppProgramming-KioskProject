@@ -30,7 +30,7 @@ android:layout_height="wrap_content">
         android:layout_marginLeft="40dp"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/rixinooariduriregular"
+        android:fontFamily="@font/cafe24ssurround"
         android:textColor="@color/black"
         />
 

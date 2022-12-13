@@ -42,7 +42,7 @@
         android:textSize="20dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/rixinooariduriregular"
+        android:fontFamily="@font/cafe24ssurround"
         android:textColor="@color/black"
         />
     </LinearLayout>
