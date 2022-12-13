@@ -38,7 +38,6 @@ import java.io.File
 import java.text.DecimalFormat
 import kotlin.math.roundToInt
 
-
 public class OrderPage : AppCompatActivity() {
 
     lateinit var requestLaunch: ActivityResultLauncher<Intent>
@@ -50,6 +49,19 @@ public class OrderPage : AppCompatActivity() {
     var patty_list = mutableListOf<Product>()
     var side_list = mutableListOf<Product>()
     var veg_list = mutableListOf<Product>()
+
+    // 전체 주문 목록 list
+    // 더 주문할 때마다 add, 주문내역에서 취소되면 removeAt
+    var entireOrderList = mutableListOf<Order>()
+    // 주문 속 메뉴들이 string 형식으로 list로 저장 (ex. "[단품] 불고기 버거", ...)
+    var orderList = mutableListOf<String>()
+    // 주문된 버거의 수량
+    var count = 0
+    // 재료 + 추가 + 사이드 + 음료 수량 (사이드와 음료를 하나만 시킨다고 가정)
+    // 마지막 두 개 출력해서 세트 정보 출력
+    var totalCount = 0
+    // 세트면 1, 단품이면 0
+    var setOrNot = 0
 
     val postListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -190,10 +202,7 @@ public class OrderPage : AppCompatActivity() {
         }
         OrderListBtn.setVisibility(View.INVISIBLE)
         OrderListBtn.setBackgroundColor(Color.parseColor("#00ff0000"));
-        OrderListBtn.typeface = resources.getFont(R.font.rixinooariduriregular)
         OrderListBtn.setTextColor(resources.getColor(R.color.brown_600))
-        // OrderListBtn.textSize = changeDP(30).toFloat()
-
 
         //add Button activity 데이터 수신
         requestLaunch = registerForActivityResult(
@@ -359,11 +368,11 @@ public class OrderPage : AppCompatActivity() {
 
                             }
                             "cheesefries" -> {
-                            sideimg =
-                                resources.getDrawable(R.drawable.cheesefries)
+                                sideimg =
+                                    resources.getDrawable(R.drawable.cheesefries)
                                 numberOfSides[1]++
 
-                        }
+                            }
                             "chickenfries" -> {
                                 sideimg =
                                     resources.getDrawable(R.drawable.chickenfries)
@@ -474,18 +483,26 @@ public class OrderPage : AppCompatActivity() {
             for (p in burgerMenus) {
                 productList.add(p)
                 total += p.price * p.num
+                totalCount = totalCount + p.num
             }
             for (p in addMenus) {
                 productList.add(p)
                 total += p.price * p.num
+                totalCount = totalCount + p.num
             }
             for (p in sideMenus) {
                 productList.add(p)
                 total += p.price * p.num
+                totalCount = totalCount + p.num
+                if(p.num != 0)
+                    setOrNot = 1
             }
             for (p in drinkMenus) {
                 productList.add(p)
                 total += p.price * p.num
+                totalCount = totalCount + p.num
+                if(p.num != 0)
+                    setOrNot = 1
             }
 
 //            for(a in productList)
@@ -494,6 +511,23 @@ public class OrderPage : AppCompatActivity() {
             //order에 데이터 추가
             order.lists.addAll(productList)
             order.price = total
+
+            entireOrderList.add(order)
+
+            var tempString = "a"
+            if(setOrNot == 1)
+                tempString = "\n[세트] "
+            else
+                tempString = "\n[단품] "
+            tempString = tempString + entireOrderList[count].lists[0].name + " 버거\n"
+            if(setOrNot == 1)
+                tempString = tempString + "\t(" + entireOrderList[count].lists[totalCount-2].name + ", " + entireOrderList[count].lists[totalCount-1].name + ")"
+            orderList.add(count, tempString)
+            count++
+
+            totalCount = 0
+            setOrNot = 0
+
 
             //주문정보 초기화
             productList.clear()
@@ -511,7 +545,6 @@ public class OrderPage : AppCompatActivity() {
                 Log.d("productList",a.name+a.num)
 
             //전체 order 관리하는 리스트 추가 필요
-
 
 
             //order clear
@@ -544,8 +577,6 @@ public class OrderPage : AppCompatActivity() {
         }
     }
 
-
-
     private fun changeDP(value: Int): Int {
 
         var displayMetrics = resources.displayMetrics
@@ -572,30 +603,49 @@ public class OrderPage : AppCompatActivity() {
     }
 
 
-
     fun orderListDialog(): AlertDialog.Builder{
 
-        // orderList에 목록 받아오기
-        // 여기 있는 데이터를 다음 과정으로 넘겨주기
-        var orderList = arrayOf("새우버거 세트 (콜라, 감자튀김)", "불고기버거 단품")
         var checkedItems = arrayListOf<String>()
         val builder = AlertDialog.Builder(this)
+        var orderArray = emptyArray<String>()
+        var checkCount = 0
+        var deleteIndex = arrayListOf<Int>()
+
+        for(i in 0..count-1)
+        {
+            orderArray = orderArray.plus("")
+            orderArray[i] = orderList[i]
+        }
+        // 전체 선택해도 괜찮도록
+        entireOrderList.add(count, order)
+        orderList.add(count, "")
 
         builder.setTitle("취소할 메뉴를 선택하세요.")
-            .setMultiChoiceItems(orderList, null, object : DialogInterface.OnMultiChoiceClickListener {
+            .setMultiChoiceItems(orderArray, null, object : DialogInterface.OnMultiChoiceClickListener {
                 override fun onClick(dialogInterface: DialogInterface, pos: Int, isChecked: Boolean) {
                     if(isChecked) {
-                        checkedItems.add(orderList[pos])
-                        // array에서 값 삭제하기
-                    } else if(checkedItems.contains(orderList[pos])) {
-                        checkedItems.remove(orderList[pos])
+                        checkedItems.add(orderArray[pos])
+                        deleteIndex.add(pos)
+                        checkCount++
+                    } else if(checkedItems.contains(orderArray[pos])) {
+                        checkedItems.remove(orderArray[pos])
+                        deleteIndex.remove(pos)
+                        checkCount--
                     }
                 }
             })
 
             .setPositiveButton("취소하기", object: DialogInterface.OnClickListener {
                 override fun onClick(p0: DialogInterface?, p1: Int) {
-                    // Toast.makeText(baseContext, "${checkedItems}", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(baseContext, "${checkCount} ${deleteIndex}", Toast.LENGTH_LONG).show()
+                    if(checkCount != 0)
+                    {
+                        for(i in 0..checkCount-1) {
+                            // entire에서도 지워야 함
+                            orderList.remove(checkedItems[i])
+                            count--
+                        }
+                    }
                 }
             })
 
@@ -619,8 +669,7 @@ public class OrderPage : AppCompatActivity() {
                 return p.price
             }
         }
+
         return 0
     }
-
-
 }

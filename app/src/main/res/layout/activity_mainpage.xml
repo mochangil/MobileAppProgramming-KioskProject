@@ -34,8 +34,8 @@
 
         <Button
             android:id="@+id/admin_button"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:background="@drawable/gear"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"/>
@@ -159,8 +159,8 @@
         </LinearLayout>
 
         <Button
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:id="@+id/addSideBtn"
             android:text="사이드\n추가하기"
             android:textSize="15dp"
@@ -190,8 +190,8 @@
             >
         </LinearLayout>
         <Button
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:id="@+id/addDrinkBtn"
             android:text="음료\n추가하기"
             android:textSize="15dp"
@@ -216,7 +216,7 @@
             android:id="@+id/moreOrder"
             android:text="더 주문할래요"
             android:textSize="20dp"
-            android:layout_margin = "20dp"
+            android:layout_margin = "10dp"
             android:layout_marginLeft="40dp"
             android:layout_gravity="center"
             android:background="@drawable/round_button"
@@ -231,7 +231,7 @@
             android:layout_height="55dp"
             android:text="다 주문했어요"
             android:textSize="20dp"
-            android:layout_margin = "20dp"
+            android:layout_margin = "10dp"
             android:layout_marginLeft="40dp"
             android:layout_gravity="center"
             android:background="@drawable/round_button"
