@@ -211,6 +211,12 @@ class InventoryTable : AppCompatActivity() {
                 is_cheese = false
                 is_side = false
                 is_drink = false
+
+                finish()
+                overridePendingTransition(0, 0)
+                val intent = intent
+                startActivity(intent)
+                overridePendingTransition(0, 0)
             }
         }
 
