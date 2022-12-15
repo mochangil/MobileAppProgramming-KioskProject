@@ -62,6 +62,7 @@ public class OrderPage : AppCompatActivity() {
     var totalCount = 0
     // 세트면 1, 단품이면 0
     var setOrNot = 0
+    var totalPrice = 0
 
     val postListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -568,6 +569,15 @@ public class OrderPage : AppCompatActivity() {
 
         binding.completeOrder.setOnClickListener {
             val pay = Intent(this, PaymentActivity::class.java)
+
+            /*
+for(i in 0..count-1)
+{
+    totalPrice = totalPrice + entireOrderList[i].price
+}
+Toast.makeText(baseContext, "${totalPrice}", Toast.LENGTH_LONG).show()
+ */
+
             startActivity(pay)
         }
 
