@@ -17,18 +17,13 @@ class PaymentActivity: AppCompatActivity() {
         val binding = PaymentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val totalBill: Int = intent.getIntExtra("TotalBill", 0)
+        val totalBill: Int = intent.getIntExtra("totalBill", 0)
         binding.paymentNumber.text = totalBill.toString()
 
         val prePayment = PrePaymentFragment()
-
-        fragmentManager = supportFragmentManager
-        transaction = fragmentManager.beginTransaction()
-
         val bundle = Bundle()
         bundle.putInt("totalBill", totalBill)
         prePayment.arguments = bundle
-
 
         fragmentManager = supportFragmentManager
         transaction = fragmentManager.beginTransaction()
