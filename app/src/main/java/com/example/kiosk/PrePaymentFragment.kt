@@ -1,6 +1,7 @@
 package com.example.kiosk
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +43,7 @@ class PrePaymentFragment : Fragment() {
         v.findViewById<Button>(R.id.pre_payment_cancel).setOnClickListener {
             activity?.finish()
         }
+        val money = arguments?.getInt("totalBill") ?: 1
 
         val confirmButton = v.findViewById<Button>(R.id.pre_payment_confirm)
         val rg1 = v.findViewById<RadioGroup>(R.id.meal_location_radio)
@@ -82,8 +84,14 @@ class PrePaymentFragment : Fragment() {
         }
 
         confirmButton.setOnClickListener {
-            if(rg2.checkedRadioButtonId == R.id.cash)
-                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, CashPaymentFragment())?.commit()
+            if(rg2.checkedRadioButtonId == R.id.cash) {
+                val cashPayment = CashPaymentFragment()
+                val bundle = Bundle()
+                bundle.putInt("totalBill", money)
+                cashPayment.arguments = bundle
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragment_container, cashPayment)?.commit()
+            }
             else
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, CardPaymentFragment())?.commit()
         }
