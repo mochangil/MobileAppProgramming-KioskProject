@@ -13,6 +13,8 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.*
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -138,7 +140,7 @@ public class OrderPage : AppCompatActivity() {
     var numberOfDrinks = arrayListOf<Int>(0,0)
 
     var sideNames = arrayListOf<String>("감자튀김","치즈튀김","치킨튀김")
-    var drinkNames = arrayListOf<String>("사이다","콜라")
+    var drinkNames = arrayListOf<String>("사이다","코카콜라")
 
     //주문내역 확인시 메인 버거메뉴, 추가메뉴, 사이드, 음료 각각 구분
     var burgerMenus = arrayListOf<Product>()
@@ -221,6 +223,9 @@ public class OrderPage : AppCompatActivity() {
                 btn.layoutParams = layoutParams
                 binding.addButtonView.addView(btn)
                 addmenucount++
+                if(addmenucount>=2){
+                    binding.addBtn.visibility=INVISIBLE;
+                }
                 newbutton = btn
                 newbutton.setBackgroundColor(Color.parseColor("#00ff0000"));
                 newbutton.typeface = resources.getFont(R.font.rixinooariduriregular)
@@ -234,6 +239,8 @@ public class OrderPage : AppCompatActivity() {
                 newbutton.setOnClickListener{
                     binding.addButtonView.removeView(btn)
                     addMenuList.remove(product)
+                    if(addmenucount==2)
+                        binding.addBtn.visibility=VISIBLE;
                     addmenucount--
                 }
 
@@ -242,7 +249,7 @@ public class OrderPage : AppCompatActivity() {
 
         //add button listener
         binding.addBtn.setOnClickListener {
-            if(addmenucount <= 2) {
+            if(addmenucount <= 1) {
                 val addOrderIntent = Intent(this, AddMenuDialog::class.java)
                 requestLaunch.launch(addOrderIntent)
             }
@@ -468,8 +475,11 @@ public class OrderPage : AppCompatActivity() {
             burgerMenus.add(mainSauce)
             for (p in mainVegetable)
                 burgerMenus.add(p)
-            for (p in addMenuList)
+            for (p in addMenuList){
+                p.price = getPrice("add",p.name);
                 addMenus.add(p)
+            }
+
 
             //side 정보
             for (i in 0..2) {
@@ -509,6 +519,7 @@ public class OrderPage : AppCompatActivity() {
 //            for(a in productList)
 //                Log.d("productList",a.name+a.num)
 
+            Log.d("totalAmount",total.toString());
             //order에 데이터 추가
             order.lists.addAll(productList)
             order.price = total
@@ -564,7 +575,7 @@ public class OrderPage : AppCompatActivity() {
             addmenucount = 0; sidecount = 0; drinkcount= 0
             pattyName=" "; sauceName=" "; cheeseName = " "
             sideName=" ";drinkName = " ";vegetableName=" "
-
+            binding.addBtn.visibility=VISIBLE;
         }
 
         binding.completeOrder.setOnClickListener {
@@ -678,6 +689,7 @@ public class OrderPage : AppCompatActivity() {
     }
 
     fun getPrice(type : String, name : String): Int {
+        Log.d("menuname?",name)
         var lists = mutableListOf<Product>()
         when (type) {
             "patty" -> lists = patty_list
@@ -686,9 +698,21 @@ public class OrderPage : AppCompatActivity() {
             "cheese" -> lists = cheese_list
             "side" -> lists = side_list
             "drink" -> lists = drink_list
+            "add" -> {
+                when(name) {
+                    "불고기" -> lists = patty_list
+                    "새우" -> lists = patty_list
+                    "달걀샐러드" -> lists = patty_list
+                    "스테이크" -> lists = patty_list
+                    "치킨" -> lists = patty_list
+                    "모짜렐라치즈" -> lists = cheese_list
+                    "체다치즈" -> lists = cheese_list
+                }
+            }
         }
         for(p in lists){
             if(p.name == name){
+                Log.d("matchingName",name+p.price)
                 return p.price
             }
         }
