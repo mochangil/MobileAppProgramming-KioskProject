@@ -64,7 +64,7 @@ public class OrderPage : AppCompatActivity() {
     var totalCount = 0
     // 세트면 1, 단품이면 0
     var setOrNot = 0
-    var totalBill = 100
+    var totalBill = 1000
 
     val postListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -580,9 +580,9 @@ public class OrderPage : AppCompatActivity() {
         }
 
         binding.completeOrder.setOnClickListener {
-            val pay = Intent(this, PaymentActivity::class.java)
-            pay.putExtra("totalBill", totalBill);
-            startActivity(pay)
+            val paymentIntent = Intent(this, PaymentActivity::class.java)
+            paymentIntent.putExtra("totalBill", totalBill);
+            startActivity(paymentIntent)
         }
 
         binding.adminButton.setOnClickListener {

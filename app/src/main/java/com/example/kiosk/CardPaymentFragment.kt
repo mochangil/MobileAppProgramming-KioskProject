@@ -46,6 +46,7 @@ class CardPaymentFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val v = inflater.inflate(R.layout.fragment_card_payment, container, false)
+        val totalBill = arguments?.getInt("totalBill") ?: 1
 
         val builder = AlertDialog.Builder(requireActivity())
         builder.setView(R.layout.payment_dialog)
@@ -69,7 +70,12 @@ class CardPaymentFragment : Fragment() {
 
         v.findViewById<Button>(R.id.payment_cancel).setOnClickListener {
             Toast.makeText(activity, "결제 취소하셨습니다.", Toast.LENGTH_SHORT).show()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, PrePaymentFragment())?.commit()
+            val prePayment = PrePaymentFragment()
+            val bundle = Bundle()
+            bundle.putInt("totalBill", totalBill)
+            prePayment.arguments = bundle
+
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, prePayment)?.commit()
         }
         return v
     }

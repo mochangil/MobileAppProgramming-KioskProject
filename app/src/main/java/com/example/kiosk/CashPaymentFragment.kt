@@ -28,7 +28,6 @@ class CashPaymentFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
-    var money: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +44,8 @@ class CashPaymentFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_cash_payment, container, false)
         var i = 0
-        var money: Int = arguments?.getInt("totalBill") ?: 1 // 결제금액 임의로 설정, 19500을 실제 결제 금액 변수로 대체하면 될듯합니다..
+        val totalBill = arguments?.getInt("totalBill") ?: 1 // 결제금액 임의로 설정, 19500을 실제 결제 금액 변수로 대체하면 될듯합니다..
+        var money = totalBill
         var restMoney = money
         var insertMoney = 0
         val restPrice = v.findViewById<TextView>(R.id.payment_rest_number)
@@ -103,7 +103,12 @@ class CashPaymentFragment : Fragment() {
 
         v.findViewById<Button>(R.id.payment_cancel).setOnClickListener {
             Toast.makeText(activity, "결제 취소하셨습니다. 잔돈을 반환합니다.", Toast.LENGTH_SHORT).show()
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, PrePaymentFragment())?.commit()
+            val prePayment = PrePaymentFragment()
+            val bundle = Bundle()
+            bundle.putInt("totalBill", totalBill)
+            prePayment.arguments = bundle
+
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, prePayment)?.commit()
         }
         return v
     }

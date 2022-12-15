@@ -43,11 +43,14 @@ class PrePaymentFragment : Fragment() {
         v.findViewById<Button>(R.id.pre_payment_cancel).setOnClickListener {
             activity?.finish()
         }
-        val money = arguments?.getInt("totalBill") ?: 1
 
         val confirmButton = v.findViewById<Button>(R.id.pre_payment_confirm)
         val rg1 = v.findViewById<RadioGroup>(R.id.meal_location_radio)
         val rg2 = v.findViewById<RadioGroup>(R.id.payment_method_radio)
+
+        val totalBill = arguments?.getInt("totalBill") ?: 0
+        val cashPayment = CashPaymentFragment()
+        val cardPayment = CardPaymentFragment()
 
         rg1.setOnCheckedChangeListener { _, checkedId ->
             if(rg2.checkedRadioButtonId != -1) {
@@ -85,15 +88,19 @@ class PrePaymentFragment : Fragment() {
 
         confirmButton.setOnClickListener {
             if(rg2.checkedRadioButtonId == R.id.cash) {
-                val cashPayment = CashPaymentFragment()
                 val bundle = Bundle()
-                bundle.putInt("totalBill", money)
+                bundle.putInt("totalBill", totalBill)
                 cashPayment.arguments = bundle
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragment_container, cashPayment)?.commit()
             }
-            else
-                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, CardPaymentFragment())?.commit()
+            else {
+                val bundle = Bundle()
+                bundle.putInt("totalBill", totalBill)
+                cardPayment.arguments = bundle
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragment_container, cardPayment)?.commit()
+            }
         }
 
         return v
