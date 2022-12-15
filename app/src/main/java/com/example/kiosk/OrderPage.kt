@@ -525,6 +525,7 @@ public class OrderPage : AppCompatActivity() {
             order.price = total
 
             entireOrderList.add(order)
+            totalBill = totalBill + entireOrderList[count].price
 
             var tempString = "a"
             if(setOrNot == 1)
@@ -581,13 +582,6 @@ public class OrderPage : AppCompatActivity() {
         binding.completeOrder.setOnClickListener {
             val pay = Intent(this, PaymentActivity::class.java)
 
-
-            for(i in 0..count-1)
-            {
-                totalBill = totalBill + entireOrderList[i].price
-            }
-            Toast.makeText(baseContext, "${totalBill}", Toast.LENGTH_LONG).show()
-
             startActivity(pay)
         }
 
@@ -630,17 +624,17 @@ public class OrderPage : AppCompatActivity() {
         var orderArray = emptyArray<String>()
         var checkCount = 0
         var deleteIndex = arrayListOf<Int>()
-        var orderTemp = Order()
         val seperator = ""
 
-        for(i in 0..count-1)
-        {
+        for(i in 0..count-1) {
             orderArray = orderArray.plus("")
             orderArray[i] = orderList[i]
         }
+
         // 전체 선택해도 괜찮도록
         entireOrderList.add(count, order)
         orderList.add(count, "")
+
 
         builder.setTitle("취소할 메뉴를 선택하세요.")
             .setMultiChoiceItems(orderArray, null, object : DialogInterface.OnMultiChoiceClickListener {
@@ -659,20 +653,25 @@ public class OrderPage : AppCompatActivity() {
 
             .setPositiveButton("취소하기", object: DialogInterface.OnClickListener {
                 override fun onClick(p0: DialogInterface?, p1: Int) {
-                    // Toast.makeText(baseContext, "${checkCount} ${deleteIndex}", Toast.LENGTH_LONG).show()
+
                     if(checkCount != 0)
                     {
                         for(i in 0..checkCount-1) {
                             // entire에서도 지워야 함
+                            /*
                             for(k in 0..count-1)
                             {
                                 val tempString = entireOrderList[k].lists.joinToString(seperator)
-                                if(checkedItems[i] == tempString)
-                                    entireOrderList.removeAt(k)
+                                // if(checkedItems[i] == tempString)
+                                   // entireOrderList.removeAt(k)
                             }
+                             */
+
                             orderList.remove(checkedItems[i])
                             count--
                         }
+                        totalBill = totalBill - 2000 * checkCount
+                        Toast.makeText(baseContext, "${totalBill}", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
