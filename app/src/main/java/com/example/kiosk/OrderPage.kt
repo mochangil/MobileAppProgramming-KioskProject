@@ -62,7 +62,7 @@ public class OrderPage : AppCompatActivity() {
     var totalCount = 0
     // 세트면 1, 단품이면 0
     var setOrNot = 0
-    var totalPrice = 0
+    var totalBill = 0
 
     val postListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
@@ -570,13 +570,12 @@ public class OrderPage : AppCompatActivity() {
         binding.completeOrder.setOnClickListener {
             val pay = Intent(this, PaymentActivity::class.java)
 
-            /*
-for(i in 0..count-1)
-{
-    totalPrice = totalPrice + entireOrderList[i].price
-}
-Toast.makeText(baseContext, "${totalPrice}", Toast.LENGTH_LONG).show()
- */
+
+            for(i in 0..count-1)
+            {
+                totalBill = totalBill + entireOrderList[i].price
+            }
+            Toast.makeText(baseContext, "${totalBill}", Toast.LENGTH_LONG).show()
 
             startActivity(pay)
         }
@@ -620,6 +619,8 @@ Toast.makeText(baseContext, "${totalPrice}", Toast.LENGTH_LONG).show()
         var orderArray = emptyArray<String>()
         var checkCount = 0
         var deleteIndex = arrayListOf<Int>()
+        var orderTemp = Order()
+        val seperator = ""
 
         for(i in 0..count-1)
         {
@@ -652,6 +653,12 @@ Toast.makeText(baseContext, "${totalPrice}", Toast.LENGTH_LONG).show()
                     {
                         for(i in 0..checkCount-1) {
                             // entire에서도 지워야 함
+                            for(k in 0..count-1)
+                            {
+                                val tempString = entireOrderList[k].lists.joinToString(seperator)
+                                if(checkedItems[i] == tempString)
+                                    entireOrderList.removeAt(k)
+                            }
                             orderList.remove(checkedItems[i])
                             count--
                         }
